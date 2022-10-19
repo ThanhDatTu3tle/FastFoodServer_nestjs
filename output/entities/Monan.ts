@@ -8,11 +8,11 @@ import {
 } from "typeorm";
 import { Danhmucyeuthich } from "./Danhmucyeuthich";
 import { Donghoadon } from "./Donghoadon";
-import { Danhmuc } from "./Danhmuc";
+// import { Danhmuc } from "./Danhmuc";
 
-@Index("PK__MONAN__DA2046AD92DB159C", ["maMonAn", "maDanhMuc"], {
-  unique: true,
-})
+// @Index("PK__MONAN__DA2046AD92DB159C", ["maMonAn", "maDanhMuc"], {
+//   unique: true,
+// })
 @Entity("MONAN", { schema: "dbo" })
 export class Monan {
   @Column("nvarchar", { primary: true, name: "MaMonAn", length: 10 })
@@ -24,8 +24,8 @@ export class Monan {
   @Column("nvarchar", { name: "ChiTiet", nullable: true, length: 100 })
   chiTiet: string | null;
 
-  @Column("image", { name: "HinhAnhMonAn", nullable: true })
-  hinhAnhMonAn: Buffer | null;
+  @Column("nvarchar", { name: "HinhAnhMonAn", nullable: true, length: 250 })
+  hinhAnhMonAn: string | null;
 
   @Column("decimal", {
     name: "SoLuong",
@@ -74,7 +74,7 @@ export class Monan {
   @OneToMany(() => Donghoadon, (donghoadon) => donghoadon.monan)
   donghoadons: Donghoadon[];
 
-  @ManyToOne(() => Danhmuc, (danhmuc) => danhmuc.monans)
-  @JoinColumn([{ name: "MaDanhMuc", referencedColumnName: "maDanhMuc" }])
-  maDanhMuc2: Danhmuc;
+  // @ManyToOne(() => Danhmuc, (danhmuc) => danhmuc.monans)
+  // @JoinColumn([{ name: "MaDanhMuc", referencedColumnName: "maDanhMuc" }])
+  // maDanhMuc2: Danhmuc;
 }

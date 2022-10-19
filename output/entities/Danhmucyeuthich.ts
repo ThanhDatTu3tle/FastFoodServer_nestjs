@@ -2,11 +2,11 @@ import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import { Monan } from "./Monan";
 import { Thongtinkhachhang } from "./Thongtinkhachhang";
 
-@Index(
-  "PK__DANHMUCY__4570F48FFD42EF56",
-  ["maKhachHang", "maMonAn", "maDanhMuc"],
-  { unique: true }
-)
+// @Index(
+//   "PK__DANHMUCY__4570F48FFD42EF56",
+//   ["maKhachHang", "maMonAn", "maDanhMuc"],
+//   { unique: true }
+// )
 @Entity("DANHMUCYEUTHICH", { schema: "dbo" })
 export class Danhmucyeuthich {
   @Column("nvarchar", { primary: true, name: "MaKhachHang", length: 10 })
