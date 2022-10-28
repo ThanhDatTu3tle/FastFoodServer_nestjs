@@ -6,45 +6,44 @@ import {
   ManyToOne,
   OneToMany,
 } from "typeorm";
-import { Thongtinkhachhang } from "./Thongtinkhachhang";
-import { Donghoadon } from "./Donghoadon";
-
-// @Index("PK__CHITIETD__5A18ABA34028E88A", ["maDonHang", "maKhachHang"], {
-//   unique: true,
-// })
+import { Khachhang } from "./Khachhang";
+import { Danhsachdiachi } from "./Danhsachdiachi";
+import { Chitiethoadon } from "./Chitiethoadon";
+// @Index("PK__CHITIETD__4B0B45DDA713F5FF", ["maChiTietDonHang"], { unique: true })
 @Entity("CHITIETDONHANG", { schema: "dbo" })
 export class Chitietdonhang {
-  @Column("nvarchar", { primary: true, name: "MaDonHang", length: 10 })
-  maDonHang: string;
+  @Column("nvarchar", { primary: true, name: "MaChiTietDonHang", length: 10 })
+  maChiTietDonHang: string;
 
-  @Column("nvarchar", { name: "DiaChi", nullable: true, length: 50 })
-  diaChi: string | null;
+  @Column("time", { name: "GioDat" })
+  gioDat: Date;
 
-  @Column("datetime", { name: "ThoiGianDatHang", nullable: true })
-  thoiGianDatHang: Date | null;
+  @Column("smalldatetime", { name: "NgayDat" })
+  ngayDat: Date;
 
-  @Column("image", { name: "HinhAnhMonAn", nullable: true })
-  hinhAnhMonAn: Buffer | null;
+  @Column("float", { name: "ThanhTien", precision: 53 })
+  thanhTien: number;
 
-  @Column("nvarchar", { name: "TenMonAn", nullable: true, length: 50 })
-  tenMonAn: string | null;
+  @Column("nvarchar", { name: "MaGiamGia", length: 10 })
+  maGiamGia: string;
 
-  @Column("nvarchar", { name: "ThanhTien", nullable: true, length: 10 })
-  thanhTien: string | null;
+  @Column("nvarchar", { name: "TrangThai", length: 50 })
+  trangThai: string;
 
-  @Column("nvarchar", { name: "TrangThai", nullable: true, length: 20 })
-  trangThai: string | null;
-
-  @Column("nvarchar", { primary: true, name: "MaKhachHang", length: 10 })
-  maKhachHang: string;
+  @ManyToOne(() => Khachhang, (khachhang) => khachhang.chitietdonhangs)
+  @JoinColumn([{ name: "MaKhachHang", referencedColumnName: "maKhachHang" }])
+  maKhachHang: Khachhang;
 
   @ManyToOne(
-    () => Thongtinkhachhang,
-    (thongtinkhachhang) => thongtinkhachhang.chitietdonhangs
+    () => Danhsachdiachi,
+    (danhsachdiachi) => danhsachdiachi.chitietdonhangs
   )
-  @JoinColumn([{ name: "MaKhachHang", referencedColumnName: "maKhachHang" }])
-  maKhachHang2: Thongtinkhachhang;
+  @JoinColumn([{ name: "MaDiaChi", referencedColumnName: "maDiaChi" }])
+  maDiaChi: Danhsachdiachi;
 
-  @OneToMany(() => Donghoadon, (donghoadon) => donghoadon.chitietdonhang)
-  donghoadons: Donghoadon[];
+  @OneToMany(
+    () => Chitiethoadon,
+    (chitiethoadon) => chitiethoadon.maChiTietDonHang
+  )
+  chitiethoadons: Chitiethoadon[];
 }

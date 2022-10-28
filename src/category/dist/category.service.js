@@ -45,38 +45,46 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.ProductsController = void 0;
+exports.CategoryService = void 0;
 var common_1 = require("@nestjs/common");
-var product_entity_1 = require("./entities/product.entity");
-// import { UpdateProductDto } from './dto/update-product.dto';
-var swagger_1 = require("@nestjs/swagger");
-var ProductsController = /** @class */ (function () {
-    function ProductsController(productsService) {
-        this.productsService = productsService;
+var typeorm_1 = require("@nestjs/typeorm");
+var Danhmuc_1 = require("../../output/entities/Danhmuc");
+var CategoryService = /** @class */ (function () {
+    function CategoryService(
+    // @InjectRepository(Product)
+    // private productRepository: Repository<Product>,
+    categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
-    ProductsController.prototype.create = function (createProductDto) {
-        return this.productsService.create(createProductDto);
-    };
-    ProductsController.prototype.getAll = function () {
+    CategoryService.prototype.create = function (createCategoryDto) {
         return __awaiter(this, void 0, void 0, function () {
+            var newCategory;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.productsService.getAll()];
+                switch (_a.label) {
+                    case 0:
+                        newCategory = this.categoryRepository.create();
+                        newCategory.maDanhMuc = createCategoryDto.maDanhMuc;
+                        newCategory.tenDanhMuc = createCategoryDto.tenDanhMuc;
+                        newCategory.hinhAnh = createCategoryDto.hinhAnh;
+                        return [4 /*yield*/, this.categoryRepository.save(newCategory)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
-    __decorate([
-        common_1.Post(),
-        swagger_1.ApiCreatedResponse({ type: product_entity_1.Product }),
-        swagger_1.ApiBadRequestResponse(),
-        __param(0, common_1.Body())
-    ], ProductsController.prototype, "create");
-    __decorate([
-        common_1.Get()
-    ], ProductsController.prototype, "getAll");
-    ProductsController = __decorate([
-        swagger_1.ApiTags('Products'),
-        common_1.Controller('products')
-    ], ProductsController);
-    return ProductsController;
+    CategoryService.prototype.getAll = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.categoryRepository.find()];
+            });
+        });
+    };
+    CategoryService = __decorate([
+        common_1.Injectable(),
+        __param(0, typeorm_1.InjectRepository(Danhmuc_1.Danhmuc))
+    ], CategoryService);
+    return CategoryService;
 }());
-exports.ProductsController = ProductsController;
+exports.CategoryService = CategoryService;

@@ -6,32 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.CreateProductDto = void 0;
+exports.Category = void 0;
 var swagger_1 = require("@nestjs/swagger");
-var CreateProductDto = /** @class */ (function () {
-    function CreateProductDto() {
+var Category = /** @class */ (function () {
+    function Category() {
     }
     __decorate([
         swagger_1.ApiProperty()
-    ], CreateProductDto.prototype, "maMonAn");
+    ], Category.prototype, "maDanhMuc");
     __decorate([
         swagger_1.ApiProperty()
-    ], CreateProductDto.prototype, "maDanhMuc");
+    ], Category.prototype, "tenDanhMuc");
     __decorate([
         swagger_1.ApiProperty()
-    ], CreateProductDto.prototype, "tenMonAn");
-    __decorate([
-        swagger_1.ApiProperty()
-    ], CreateProductDto.prototype, "hinhAnhMonAn");
-    __decorate([
-        swagger_1.ApiProperty()
-    ], CreateProductDto.prototype, "moTaChiTiet");
-    __decorate([
-        swagger_1.ApiProperty()
-    ], CreateProductDto.prototype, "giaTien");
-    __decorate([
-        swagger_1.ApiProperty()
-    ], CreateProductDto.prototype, "yeuThich");
-    return CreateProductDto;
+    ], Category.prototype, "hinhAnh");
+    return Category;
 }());
-exports.CreateProductDto = CreateProductDto;
+exports.Category = Category;

@@ -1,24 +1,19 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
-import { Thongtinkhachhang } from "./Thongtinkhachhang";
+import { Khachhang } from "./Khachhang";
 
-// @Index("PK__YKIENKHA__E0C144F3332CF27D", ["maYKien", "maKhachHang"], {
-//   unique: true,
-// })
+// @Index("PK__YKIENKHA__A84C6BFD2B06AEFF", ["maYKien"], { unique: true })
 @Entity("YKIENKHACHHANG", { schema: "dbo" })
 export class Ykienkhachhang {
   @Column("nvarchar", { primary: true, name: "MaYKien", length: 10 })
   maYKien: string;
 
-  @Column("nvarchar", { primary: true, name: "MaKhachHang", length: 10 })
-  maKhachHang: string;
-
-  @Column("nvarchar", { name: "NoiDung", nullable: true, length: 500 })
+  @Column("nvarchar", { name: "NoiDung", nullable: true, length: 250 })
   noiDung: string | null;
 
-  @ManyToOne(
-    () => Thongtinkhachhang,
-    (thongtinkhachhang) => thongtinkhachhang.ykienkhachhangs
-  )
+  @Column("int", { name: "DanhGia" })
+  danhGia: number;
+
+  @ManyToOne(() => Khachhang, (khachhang) => khachhang.ykienkhachhangs)
   @JoinColumn([{ name: "MaKhachHang", referencedColumnName: "maKhachHang" }])
-  maKhachHang2: Thongtinkhachhang;
+  maKhachHang: Khachhang;
 }

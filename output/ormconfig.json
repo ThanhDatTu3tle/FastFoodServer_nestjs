@@ -6,7 +6,7 @@
     "port": 1433,
     "username": "sa",
     "password": "dat27032001",
-    "database": "",
+    "database": "fastfood",
     "synchronize": false,
     "entities": ["entities/*.js"]
   }

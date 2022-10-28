@@ -16,34 +16,22 @@ var Product = /** @class */ (function () {
     ], Product.prototype, "maMonAn");
     __decorate([
         swagger_1.ApiProperty()
+    ], Product.prototype, "maDanhMuc");
+    __decorate([
+        swagger_1.ApiProperty()
     ], Product.prototype, "tenMonAn");
     __decorate([
         swagger_1.ApiProperty()
-    ], Product.prototype, "chiTiet");
+    ], Product.prototype, "moTaChiTiet");
     __decorate([
         swagger_1.ApiProperty()
     ], Product.prototype, "hinhAnhMonAn");
     __decorate([
         swagger_1.ApiProperty()
-    ], Product.prototype, "soLuong");
-    __decorate([
-        swagger_1.ApiProperty()
-    ], Product.prototype, "monAnKem");
-    __decorate([
-        swagger_1.ApiProperty()
     ], Product.prototype, "giaTien");
     __decorate([
         swagger_1.ApiProperty()
-    ], Product.prototype, "giaGoc");
-    __decorate([
-        swagger_1.ApiProperty()
-    ], Product.prototype, "giamGia");
-    __decorate([
-        swagger_1.ApiProperty()
     ], Product.prototype, "yeuThich");
-    __decorate([
-        swagger_1.ApiProperty()
-    ], Product.prototype, "maDanhMuc");
     return Product;
 }());
 exports.Product = Product;

@@ -48,6 +48,7 @@ exports.__esModule = true;
 exports.ProductsService = void 0;
 var common_1 = require("@nestjs/common");
 var typeorm_1 = require("@nestjs/typeorm");
+// import { UpdateProductDto } from './dto/update-product.dto';
 var Monan_1 = require("../../output/entities/Monan");
 var ProductsService = /** @class */ (function () {
     function ProductsService(productRepository) {
@@ -61,16 +62,12 @@ var ProductsService = /** @class */ (function () {
                     case 0:
                         newProduct = this.productRepository.create();
                         newProduct.maMonAn = createProductDto.maMonAn;
+                        // newProduct.maDanhMuc = createProductDto.maDanhMuc;
                         newProduct.tenMonAn = createProductDto.tenMonAn;
-                        newProduct.chiTiet = createProductDto.chiTiet;
                         newProduct.hinhAnhMonAn = createProductDto.hinhAnhMonAn;
-                        newProduct.soLuong = createProductDto.soLuong;
-                        newProduct.monAnKem = createProductDto.monAnKem;
+                        newProduct.moTaChiTiet = createProductDto.moTaChiTiet;
                         newProduct.giaTien = createProductDto.giaTien;
-                        newProduct.giaGoc = createProductDto.giaGoc;
-                        newProduct.giamGia = createProductDto.giamGia;
                         newProduct.yeuThich = createProductDto.yeuThich;
-                        newProduct.maDanhMuc = createProductDto.maDanhMuc;
                         return [4 /*yield*/, this.productRepository.save(newProduct)];
                     case 1:
                         _a.sent();
