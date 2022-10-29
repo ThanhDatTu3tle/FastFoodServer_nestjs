@@ -9,7 +9,7 @@ exports.__esModule = true;
 exports.Ykienkhachhang = void 0;
 var typeorm_1 = require("typeorm");
 var Khachhang_1 = require("./Khachhang");
-// @Index("PK__YKIENKHA__A84C6BFD2B06AEFF", ["maYKien"], { unique: true })
+// @Index("PK__YKIENKHA__A84C6BFD2CCA21EB", ["maYKien"], { unique: true })
 var Ykienkhachhang = /** @class */ (function () {
     function Ykienkhachhang() {
     }

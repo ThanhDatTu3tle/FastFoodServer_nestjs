@@ -1,7 +1,7 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import { Khachhang } from "./Khachhang";
 
-// @Index("PK__YKIENKHA__A84C6BFD2B06AEFF", ["maYKien"], { unique: true })
+// @Index("PK__YKIENKHA__A84C6BFD2CCA21EB", ["maYKien"], { unique: true })
 @Entity("YKIENKHACHHANG", { schema: "dbo" })
 export class Ykienkhachhang {
   @Column("nvarchar", { primary: true, name: "MaYKien", length: 10 })

@@ -11,7 +11,7 @@ var typeorm_1 = require("typeorm");
 var Chitiethoadon_1 = require("./Chitiethoadon");
 var Danhmuc_1 = require("./Danhmuc");
 var Monanyeuthich_1 = require("./Monanyeuthich");
-// @Index("PK__MONAN__B11716254149C21A", ["maMonAn"], { unique: true })
+// @Index("PK__MONAN__B117162537297AD8", ["maMonAn"], { unique: true })
 var Monan = /** @class */ (function () {
     function Monan() {
     }

@@ -10,7 +10,7 @@ exports.Monanyeuthich = void 0;
 var typeorm_1 = require("typeorm");
 var Khachhang_1 = require("./Khachhang");
 var Monan_1 = require("./Monan");
-// @Index("PK__MONANYEU__DDD505B927514E92", ["maMonAnYeuThich"], { unique: true })
+// @Index("PK__MONANYEU__DDD505B9671F6DF5", ["maMonAnYeuThich"], { unique: true })
 var Monanyeuthich = /** @class */ (function () {
     function Monanyeuthich() {
     }

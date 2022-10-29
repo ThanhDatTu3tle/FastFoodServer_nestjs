@@ -10,7 +10,8 @@ import { CategoryModule } from './category/category.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({ ...config, autoLoadEntities: true }), 
-    ProductsModule, CategoryModule,
+    ProductsModule, 
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

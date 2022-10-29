@@ -10,7 +10,7 @@ exports.Chitiethoadon = void 0;
 var typeorm_1 = require("typeorm");
 var Chitietdonhang_1 = require("./Chitietdonhang");
 var Monan_1 = require("./Monan");
-// @Index("PK__CHITIETH__B11716252E6349BC", ["maMonAn"], { unique: true })
+// @Index("PK__CHITIETH__B11716254CF96877", ["maMonAn"], { unique: true })
 var Chitiethoadon = /** @class */ (function () {
     function Chitiethoadon() {
     }

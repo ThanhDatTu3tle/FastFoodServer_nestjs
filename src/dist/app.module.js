@@ -32,7 +32,8 @@ var AppModule = /** @class */ (function () {
         common_1.Module({
             imports: [
                 typeorm_1.TypeOrmModule.forRoot(__assign(__assign({}, ormconfig_1["default"]), { autoLoadEntities: true })),
-                products_module_1.ProductsModule, category_module_1.CategoryModule,
+                products_module_1.ProductsModule,
+                category_module_1.CategoryModule,
             ],
             controllers: [app_controller_1.AppController],
             providers: [app_service_1.AppService]

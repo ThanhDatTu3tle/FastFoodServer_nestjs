@@ -4,7 +4,7 @@ import { Danhsachdiachi } from "./Danhsachdiachi";
 import { Monanyeuthich } from "./Monanyeuthich";
 import { Ykienkhachhang } from "./Ykienkhachhang";
 
-// @Index("PK__KHACHHAN__88D2F0E57063EB71", ["maKhachHang"], { unique: true })
+// @Index("PK__KHACHHAN__88D2F0E54D7AB015", ["maKhachHang"], { unique: true })
 @Entity("KHACHHANG", { schema: "dbo" })
 export class Khachhang {
   @Column("nvarchar", { primary: true, name: "MaKhachHang", length: 10 })

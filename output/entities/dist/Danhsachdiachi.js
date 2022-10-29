@@ -10,7 +10,7 @@ exports.Danhsachdiachi = void 0;
 var typeorm_1 = require("typeorm");
 var Chitietdonhang_1 = require("./Chitietdonhang");
 var Khachhang_1 = require("./Khachhang");
-// @Index("PK__DANHSACH__EB61213ECC96A57E", ["maDiaChi"], { unique: true })
+// @Index("PK__DANHSACH__EB61213EBA6B6EA3", ["maDiaChi"], { unique: true })
 var Danhsachdiachi = /** @class */ (function () {
     function Danhsachdiachi() {
     }

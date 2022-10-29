@@ -11,7 +11,7 @@ var typeorm_1 = require("typeorm");
 var Khachhang_1 = require("./Khachhang");
 var Danhsachdiachi_1 = require("./Danhsachdiachi");
 var Chitiethoadon_1 = require("./Chitiethoadon");
-// @Index("PK__CHITIETD__4B0B45DDA713F5FF", ["maChiTietDonHang"], { unique: true })
+//@Index("PK__CHITIETD__4B0B45DDE6AF50D4", ["maChiTietDonHang"], { unique: true })
 var Chitietdonhang = /** @class */ (function () {
     function Chitietdonhang() {
     }

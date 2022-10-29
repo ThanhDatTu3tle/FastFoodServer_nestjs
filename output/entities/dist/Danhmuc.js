@@ -9,7 +9,7 @@ exports.__esModule = true;
 exports.Danhmuc = void 0;
 var typeorm_1 = require("typeorm");
 var Monan_1 = require("./Monan");
-// @Index("PK__DANHMUC__B37508872A070492", ["maDanhMuc"], { unique: true })
+// @Index("PK__DANHMUC__B3750887CAA21263", ["maDanhMuc"], { unique: true })
 var Danhmuc = /** @class */ (function () {
     function Danhmuc() {
     }

@@ -11,7 +11,7 @@ import { Chitiethoadon } from "./Chitiethoadon";
 import { Danhmuc } from "./Danhmuc";
 import { Monanyeuthich } from "./Monanyeuthich";
 
-// @Index("PK__MONAN__B11716254149C21A", ["maMonAn"], { unique: true })
+// @Index("PK__MONAN__B117162537297AD8", ["maMonAn"], { unique: true })
 @Entity("MONAN", { schema: "dbo" })
 export class Monan {
   @Column("nvarchar", { primary: true, name: "MaMonAn", length: 10 })
