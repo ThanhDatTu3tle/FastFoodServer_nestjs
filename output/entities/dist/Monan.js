@@ -19,6 +19,10 @@ var Monan = /** @class */ (function () {
         typeorm_1.Column("nvarchar", { primary: true, name: "MaMonAn", length: 10 })
     ], Monan.prototype, "maMonAn");
     __decorate([
+        typeorm_1.ManyToOne(function () { return Danhmuc_1.Danhmuc; }, function (danhmuc) { return danhmuc.monans; }),
+        typeorm_1.JoinColumn([{ name: "MaDanhMuc", referencedColumnName: "maDanhMuc" }])
+    ], Monan.prototype, "maDanhMuc");
+    __decorate([
         typeorm_1.Column("nvarchar", { name: "TenMonAn", length: 50 })
     ], Monan.prototype, "tenMonAn");
     __decorate([
@@ -36,10 +40,6 @@ var Monan = /** @class */ (function () {
     __decorate([
         typeorm_1.OneToOne(function () { return Chitiethoadon_1.Chitiethoadon; }, function (chitiethoadon) { return chitiethoadon.maMonAn2; })
     ], Monan.prototype, "chitiethoadon");
-    __decorate([
-        typeorm_1.ManyToOne(function () { return Danhmuc_1.Danhmuc; }, function (danhmuc) { return danhmuc.monans; }),
-        typeorm_1.JoinColumn([{ name: "MaDanhMuc", referencedColumnName: "maDanhMuc" }])
-    ], Monan.prototype, "maDanhMuc");
     __decorate([
         typeorm_1.OneToMany(function () { return Monanyeuthich_1.Monanyeuthich; }, function (monanyeuthich) { return monanyeuthich.maMonAn; })
     ], Monan.prototype, "monanyeuthiches");

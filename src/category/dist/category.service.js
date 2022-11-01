@@ -48,12 +48,12 @@ exports.__esModule = true;
 exports.CategoryService = void 0;
 var common_1 = require("@nestjs/common");
 var typeorm_1 = require("@nestjs/typeorm");
+// import { UpdateCategoryDto } from './dto/update-category.dto';
+var Monan_1 = require("../../output/entities/Monan");
 var Danhmuc_1 = require("../../output/entities/Danhmuc");
 var CategoryService = /** @class */ (function () {
-    function CategoryService(
-    // @InjectRepository(Product)
-    // private productRepository: Repository<Product>,
-    categoryRepository) {
+    function CategoryService(productRepository, categoryRepository) {
+        this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
     }
     CategoryService.prototype.create = function (createCategoryDto) {
@@ -83,7 +83,8 @@ var CategoryService = /** @class */ (function () {
     };
     CategoryService = __decorate([
         common_1.Injectable(),
-        __param(0, typeorm_1.InjectRepository(Danhmuc_1.Danhmuc))
+        __param(0, typeorm_1.InjectRepository(Monan_1.Monan)),
+        __param(1, typeorm_1.InjectRepository(Danhmuc_1.Danhmuc))
     ], CategoryService);
     return CategoryService;
 }());

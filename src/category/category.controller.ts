@@ -17,10 +17,10 @@ export class CategoryController {
     return this.categoryService.create(createCategoryDto);
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.categoryService.findAll();
-  // }
+  @Get()
+  async getAll() {
+    return this.categoryService.getAll();
+  }
 
   // @Get(':id')
   // findOne(@Param('id') id: string) {

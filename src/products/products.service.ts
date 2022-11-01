@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 // import { UpdateProductDto } from './dto/update-product.dto';
+import { ProductRelations as relations } from 'src/relations/relations';
 import { Monan as Product } from '../../output/entities/Monan';
 import { Danhmuc as Category } from '../../output/entities/Danhmuc';
 import { Repository, getManager } from 'typeorm';
@@ -13,27 +14,47 @@ export class ProductsService {
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
 
-    // @InjectRepository(Category)
-    // private categoriesRepository: Repository<Category>
+    @InjectRepository(Category)
+    private categoriesRepository: Repository<Category>
   ) {}
 
-  async create(createProductDto: CreateProductDto) {
+  async create(createProductDto: CreateProductDto): Promise<Product> {  
+    try {
+      // Foreign key Danhmuc: categories
+      const categoriesBody = createProductDto.maDanhMuc;
+      const categories = await this.categoriesRepository.findOneBy({
+        maDanhMuc: categoriesBody
+      });
 
-    // create new product
-    const newProduct = this.productRepository.create();
-    newProduct.maMonAn = createProductDto.maMonAn;
-    // newProduct.maDanhMuc = createProductDto.maDanhMuc;
-    newProduct.tenMonAn = createProductDto.tenMonAn;
-    newProduct.hinhAnhMonAn = createProductDto.hinhAnhMonAn;
-    newProduct.moTaChiTiet = createProductDto.moTaChiTiet;
-    newProduct.giaTien = createProductDto.giaTien;
-    newProduct.yeuThich = createProductDto.yeuThich;
+      // create new product
+      const newProduct = this.productRepository.create();
+      newProduct.maMonAn = createProductDto.maMonAn;
+      newProduct.maDanhMuc = categories;
+      newProduct.tenMonAn = createProductDto.tenMonAn;
+      newProduct.hinhAnhMonAn = createProductDto.hinhAnhMonAn;
+      newProduct.moTaChiTiet = createProductDto.moTaChiTiet;
+      newProduct.giaTien = createProductDto.giaTien;
+      newProduct.yeuThich = createProductDto.yeuThich;
 
-    await this.productRepository.save(newProduct);
+      await this.productRepository.save(newProduct);
+
+      const findAndReturn = await this.productRepository.findOneOrFail({
+        relations: relations,
+        where: { maMonAn: newProduct.maMonAn },
+      });
+      return findAndReturn;
+    } catch (err) {
+      throw err;
+    }
   }
 
-  async getAll() {
-    return this.productRepository.find();
+  async getAll(): Promise<Product[]> {
+
+    const getAll = await this.productRepository.find({
+      relations,
+    })
+    
+    return getAll;
   }
 
   // findAll() {

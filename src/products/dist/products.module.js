@@ -6,23 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.CategoryModule = void 0;
+exports.ProductsModule = void 0;
 var common_1 = require("@nestjs/common");
-var category_service_1 = require("./category.service");
-var category_controller_1 = require("./category.controller");
+var products_service_1 = require("./products.service");
+var products_controller_1 = require("./products.controller");
 var typeorm_1 = require("@nestjs/typeorm");
-var Danhmuc_1 = require("../../output/entities/Danhmuc");
-var Monan_1 = require("output/entities/Monan");
-var CategoryModule = /** @class */ (function () {
-    function CategoryModule() {
+var Monan_1 = require("../../output/entities/Monan");
+var Danhmuc_1 = require("output/entities/Danhmuc");
+var ProductsModule = /** @class */ (function () {
+    function ProductsModule() {
     }
-    CategoryModule = __decorate([
+    ProductsModule = __decorate([
         common_1.Module({
-            imports: [typeorm_1.TypeOrmModule.forFeature([Danhmuc_1.Danhmuc, Monan_1.Monan])],
-            controllers: [category_controller_1.CategoryController],
-            providers: [category_service_1.CategoryService]
+            imports: [typeorm_1.TypeOrmModule.forFeature([Monan_1.Monan, Danhmuc_1.Danhmuc])],
+            controllers: [products_controller_1.ProductsController],
+            providers: [products_service_1.ProductsService]
         })
-    ], CategoryModule);
-    return CategoryModule;
+    ], ProductsModule);
+    return ProductsModule;
 }());
-exports.CategoryModule = CategoryModule;
+exports.ProductsModule = ProductsModule;

@@ -17,6 +17,10 @@ export class Monan {
   @Column("nvarchar", { primary: true, name: "MaMonAn", length: 10 })
   maMonAn: string;
 
+  @ManyToOne(() => Danhmuc, (danhmuc) => danhmuc.monans)
+  @JoinColumn([{ name: "MaDanhMuc", referencedColumnName: "maDanhMuc"}])
+  maDanhMuc: Danhmuc;
+
   @Column("nvarchar", { name: "TenMonAn", length: 50 })
   tenMonAn: string;
 
@@ -34,10 +38,6 @@ export class Monan {
 
   @OneToOne(() => Chitiethoadon, (chitiethoadon) => chitiethoadon.maMonAn2)
   chitiethoadon: Chitiethoadon;
-
-  @ManyToOne(() => Danhmuc, (danhmuc) => danhmuc.monans)
-  @JoinColumn([{ name: "MaDanhMuc", referencedColumnName: "maDanhMuc" }])
-  maDanhMuc: Danhmuc;
 
   @OneToMany(() => Monanyeuthich, (monanyeuthich) => monanyeuthich.maMonAn)
   monanyeuthiches: Monanyeuthich[];

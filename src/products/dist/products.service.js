@@ -49,43 +49,72 @@ exports.ProductsService = void 0;
 var common_1 = require("@nestjs/common");
 var typeorm_1 = require("@nestjs/typeorm");
 // import { UpdateProductDto } from './dto/update-product.dto';
+var relations_1 = require("src/relations/relations");
 var Monan_1 = require("../../output/entities/Monan");
+var Danhmuc_1 = require("../../output/entities/Danhmuc");
 var ProductsService = /** @class */ (function () {
-    function ProductsService(productRepository) {
+    function ProductsService(productRepository, categoriesRepository) {
         this.productRepository = productRepository;
+        this.categoriesRepository = categoriesRepository;
     }
     ProductsService.prototype.create = function (createProductDto) {
-        return __awaiter(this, void 0, void 0, function () {
-            var newProduct;
+        return __awaiter(this, void 0, Promise, function () {
+            var categoriesBody, categories, newProduct, findAndReturn, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        _a.trys.push([0, 4, , 5]);
+                        categoriesBody = createProductDto.maDanhMuc;
+                        return [4 /*yield*/, this.categoriesRepository.findOneBy({
+                                maDanhMuc: categoriesBody
+                            })];
+                    case 1:
+                        categories = _a.sent();
                         newProduct = this.productRepository.create();
                         newProduct.maMonAn = createProductDto.maMonAn;
-                        // newProduct.maDanhMuc = createProductDto.maDanhMuc;
+                        newProduct.maDanhMuc = categories;
                         newProduct.tenMonAn = createProductDto.tenMonAn;
                         newProduct.hinhAnhMonAn = createProductDto.hinhAnhMonAn;
                         newProduct.moTaChiTiet = createProductDto.moTaChiTiet;
                         newProduct.giaTien = createProductDto.giaTien;
                         newProduct.yeuThich = createProductDto.yeuThich;
                         return [4 /*yield*/, this.productRepository.save(newProduct)];
-                    case 1:
+                    case 2:
                         _a.sent();
-                        return [2 /*return*/];
+                        return [4 /*yield*/, this.productRepository.findOneOrFail({
+                                relations: relations_1.ProductRelations,
+                                where: { maMonAn: newProduct.maMonAn }
+                            })];
+                    case 3:
+                        findAndReturn = _a.sent();
+                        return [2 /*return*/, findAndReturn];
+                    case 4:
+                        err_1 = _a.sent();
+                        throw err_1;
+                    case 5: return [2 /*return*/];
                 }
             });
         });
     };
     ProductsService.prototype.getAll = function () {
-        return __awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, Promise, function () {
+            var getAll;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.productRepository.find()];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.productRepository.find({
+                            relations: relations_1.ProductRelations
+                        })];
+                    case 1:
+                        getAll = _a.sent();
+                        return [2 /*return*/, getAll];
+                }
             });
         });
     };
     ProductsService = __decorate([
         common_1.Injectable(),
-        __param(0, typeorm_1.InjectRepository(Monan_1.Monan))
+        __param(0, typeorm_1.InjectRepository(Monan_1.Monan)),
+        __param(1, typeorm_1.InjectRepository(Danhmuc_1.Danhmuc))
     ], ProductsService);
     return ProductsService;
 }());

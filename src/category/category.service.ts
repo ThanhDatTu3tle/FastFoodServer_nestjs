@@ -10,8 +10,8 @@ import { Repository, getManager } from 'typeorm';
 export class CategoryService {
 
   constructor(
-    // @InjectRepository(Product)
-    // private productRepository: Repository<Product>,
+    @InjectRepository(Product)
+    private productRepository: Repository<Product>,
 
     @InjectRepository(Category)
     private categoryRepository: Repository<Category>

@@ -48,14 +48,31 @@ exports.__esModule = true;
 exports.ProductsController = void 0;
 var common_1 = require("@nestjs/common");
 var product_entity_1 = require("./entities/product.entity");
-// import { UpdateProductDto } from './dto/update-product.dto';
 var swagger_1 = require("@nestjs/swagger");
 var ProductsController = /** @class */ (function () {
     function ProductsController(productsService) {
         this.productsService = productsService;
     }
-    ProductsController.prototype.create = function (createProductDto) {
-        return this.productsService.create(createProductDto);
+    ProductsController.prototype.create = function (createProductDto, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var newProduct, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.productsService.create(createProductDto)];
+                    case 1:
+                        newProduct = _a.sent();
+                        res.status(201).json({ success: true, body: newProduct });
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_1 = _a.sent();
+                        res.status(400).json({ success: false, message: err_1 });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
     };
     ProductsController.prototype.getAll = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -68,7 +85,8 @@ var ProductsController = /** @class */ (function () {
         common_1.Post(),
         swagger_1.ApiCreatedResponse({ type: product_entity_1.Product }),
         swagger_1.ApiBadRequestResponse(),
-        __param(0, common_1.Body())
+        __param(0, common_1.Body()),
+        __param(1, common_1.Res())
     ], ProductsController.prototype, "create");
     __decorate([
         common_1.Get()

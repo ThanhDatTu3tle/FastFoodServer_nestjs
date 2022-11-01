@@ -1,11 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
+// import { Danhmuc } from 'output/entities/Danhmuc';
 
 export class CreateProductDto {
   
   @ApiProperty()
   maMonAn: string;
   @ApiProperty()
-  maDanhMuc: string;
+  maDanhMuc?: string;
   @ApiProperty()
   tenMonAn: string;
   @ApiProperty()

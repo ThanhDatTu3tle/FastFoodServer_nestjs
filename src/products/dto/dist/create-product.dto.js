@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.CreateProductDto = void 0;
 var swagger_1 = require("@nestjs/swagger");
+// import { Danhmuc } from 'output/entities/Danhmuc';
 var CreateProductDto = /** @class */ (function () {
     function CreateProductDto() {
     }
