@@ -45,42 +45,48 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.CategoryController = void 0;
+exports.CustomerService = void 0;
 var common_1 = require("@nestjs/common");
-var category_entity_1 = require("./entities/category.entity");
-// import { UpdateCategoryDto } from './dto/update-category.dto';
-var swagger_1 = require("@nestjs/swagger");
-var CategoryController = /** @class */ (function () {
-    function CategoryController(categoryService) {
-        this.categoryService = categoryService;
+var typeorm_1 = require("@nestjs/typeorm");
+// import { UpdateCustomerDto } from './dto/update-customer.dto';
+var Khachhang_1 = require("output/entities/Khachhang");
+var CustomerService = /** @class */ (function () {
+    function CustomerService(productRepository) {
+        this.productRepository = productRepository;
     }
-    CategoryController.prototype.create = function (createCategoryDto) {
+    CustomerService.prototype.create = function (createCustomerDto) {
         return __awaiter(this, void 0, void 0, function () {
+            var newCustomer;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.categoryService.create(createCategoryDto)];
+                switch (_a.label) {
+                    case 0:
+                        newCustomer = this.productRepository.create();
+                        newCustomer.maKhachHang = createCustomerDto.maKhachHang;
+                        newCustomer.hoTen = createCustomerDto.hoTen;
+                        newCustomer.ngaySinh = createCustomerDto.ngaySinh;
+                        newCustomer.soDienThoai = createCustomerDto.soDienThoai;
+                        newCustomer.email = createCustomerDto.email;
+                        newCustomer.matKhau = createCustomerDto.matKhau;
+                        newCustomer.hinhAnh = createCustomerDto.hinhAnh;
+                        return [4 /*yield*/, this.productRepository.save(newCustomer)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
-    CategoryController.prototype.getAll = function () {
+    CustomerService.prototype.getAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.categoryService.getAll()];
+                return [2 /*return*/, this.productRepository.find()];
             });
         });
     };
-    __decorate([
-        common_1.Post(),
-        swagger_1.ApiCreatedResponse({ type: category_entity_1.Category }),
-        swagger_1.ApiBadRequestResponse(),
-        __param(0, common_1.Body())
-    ], CategoryController.prototype, "create");
-    __decorate([
-        common_1.Get()
-    ], CategoryController.prototype, "getAll");
-    CategoryController = __decorate([
-        swagger_1.ApiTags('category'),
-        common_1.Controller('category')
-    ], CategoryController);
-    return CategoryController;
+    CustomerService = __decorate([
+        common_1.Injectable(),
+        __param(0, typeorm_1.InjectRepository(Khachhang_1.Khachhang))
+    ], CustomerService);
+    return CustomerService;
 }());
-exports.CategoryController = CategoryController;
+exports.CustomerService = CustomerService;

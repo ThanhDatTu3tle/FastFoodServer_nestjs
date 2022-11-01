@@ -13,7 +13,7 @@ export class CategoryController {
   @Post()
   @ApiCreatedResponse({ type: Category })
   @ApiBadRequestResponse()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
+  async create(@Body() createCategoryDto: CreateCategoryDto) {
     return this.categoryService.create(createCategoryDto);
   }
 

@@ -45,42 +45,74 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.CategoryController = void 0;
+exports.FeedbackService = void 0;
 var common_1 = require("@nestjs/common");
-var category_entity_1 = require("./entities/category.entity");
-// import { UpdateCategoryDto } from './dto/update-category.dto';
-var swagger_1 = require("@nestjs/swagger");
-var CategoryController = /** @class */ (function () {
-    function CategoryController(categoryService) {
-        this.categoryService = categoryService;
+var typeorm_1 = require("@nestjs/typeorm");
+// import { UpdateFeedbackDto } from './dto/update-feedback.dto';
+var relations_1 = require("src/relations/relations");
+var Ykienkhachhang_1 = require("output/entities/Ykienkhachhang");
+var Khachhang_1 = require("output/entities/Khachhang");
+var FeedbackService = /** @class */ (function () {
+    function FeedbackService(feedbackRepository, customerRepository) {
+        this.feedbackRepository = feedbackRepository;
+        this.customerRepository = customerRepository;
     }
-    CategoryController.prototype.create = function (createCategoryDto) {
-        return __awaiter(this, void 0, void 0, function () {
+    FeedbackService.prototype.create = function (createFeedbackDto) {
+        return __awaiter(this, void 0, Promise, function () {
+            var customerBody, customer, newFeedback, findAndReturn, err_1;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.categoryService.create(createCategoryDto)];
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 4, , 5]);
+                        customerBody = createFeedbackDto.maKhachHang;
+                        return [4 /*yield*/, this.customerRepository.findOneBy({
+                                maKhachHang: customerBody
+                            })];
+                    case 1:
+                        customer = _a.sent();
+                        newFeedback = this.feedbackRepository.create();
+                        newFeedback.maYKien = createFeedbackDto.maYKien;
+                        newFeedback.maKhachHang = customer;
+                        newFeedback.noiDung = createFeedbackDto.noiDung;
+                        newFeedback.danhGia = createFeedbackDto.danhGia;
+                        return [4 /*yield*/, this.feedbackRepository.save(newFeedback)];
+                    case 2:
+                        _a.sent();
+                        return [4 /*yield*/, this.feedbackRepository.findOneOrFail({
+                                relations: relations_1.FeedbackRelations,
+                                where: { maYKien: newFeedback.maYKien }
+                            })];
+                    case 3:
+                        findAndReturn = _a.sent();
+                        return [2 /*return*/, findAndReturn];
+                    case 4:
+                        err_1 = _a.sent();
+                        throw err_1;
+                    case 5: return [2 /*return*/];
+                }
             });
         });
     };
-    CategoryController.prototype.getAll = function () {
-        return __awaiter(this, void 0, void 0, function () {
+    FeedbackService.prototype.getAll = function () {
+        return __awaiter(this, void 0, Promise, function () {
+            var getAll;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.categoryService.getAll()];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.feedbackRepository.find({
+                            relations: relations_1.FeedbackRelations
+                        })];
+                    case 1:
+                        getAll = _a.sent();
+                        return [2 /*return*/, getAll];
+                }
             });
         });
     };
-    __decorate([
-        common_1.Post(),
-        swagger_1.ApiCreatedResponse({ type: category_entity_1.Category }),
-        swagger_1.ApiBadRequestResponse(),
-        __param(0, common_1.Body())
-    ], CategoryController.prototype, "create");
-    __decorate([
-        common_1.Get()
-    ], CategoryController.prototype, "getAll");
-    CategoryController = __decorate([
-        swagger_1.ApiTags('category'),
-        common_1.Controller('category')
-    ], CategoryController);
-    return CategoryController;
+    FeedbackService = __decorate([
+        common_1.Injectable(),
+        __param(0, typeorm_1.InjectRepository(Ykienkhachhang_1.Ykienkhachhang)),
+        __param(1, typeorm_1.InjectRepository(Khachhang_1.Khachhang))
+    ], FeedbackService);
+    return FeedbackService;
 }());
-exports.CategoryController = CategoryController;
+exports.FeedbackService = FeedbackService;

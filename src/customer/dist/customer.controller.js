@@ -45,42 +45,42 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.CategoryController = void 0;
+exports.CustomerController = void 0;
 var common_1 = require("@nestjs/common");
-var category_entity_1 = require("./entities/category.entity");
-// import { UpdateCategoryDto } from './dto/update-category.dto';
+var customer_entity_1 = require("./entities/customer.entity");
+// import { UpdateCustomerDto } from './dto/update-customer.dto';
 var swagger_1 = require("@nestjs/swagger");
-var CategoryController = /** @class */ (function () {
-    function CategoryController(categoryService) {
-        this.categoryService = categoryService;
+var CustomerController = /** @class */ (function () {
+    function CustomerController(customerService) {
+        this.customerService = customerService;
     }
-    CategoryController.prototype.create = function (createCategoryDto) {
+    CustomerController.prototype.create = function (createCustomerDto) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.categoryService.create(createCategoryDto)];
+                return [2 /*return*/, this.customerService.create(createCustomerDto)];
             });
         });
     };
-    CategoryController.prototype.getAll = function () {
+    CustomerController.prototype.getAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.categoryService.getAll()];
+                return [2 /*return*/, this.customerService.getAll()];
             });
         });
     };
     __decorate([
         common_1.Post(),
-        swagger_1.ApiCreatedResponse({ type: category_entity_1.Category }),
+        swagger_1.ApiCreatedResponse({ type: customer_entity_1.Customer }),
         swagger_1.ApiBadRequestResponse(),
         __param(0, common_1.Body())
-    ], CategoryController.prototype, "create");
+    ], CustomerController.prototype, "create");
     __decorate([
         common_1.Get()
-    ], CategoryController.prototype, "getAll");
-    CategoryController = __decorate([
-        swagger_1.ApiTags('category'),
-        common_1.Controller('category')
-    ], CategoryController);
-    return CategoryController;
+    ], CustomerController.prototype, "getAll");
+    CustomerController = __decorate([
+        swagger_1.ApiTags('customer'),
+        common_1.Controller('customer')
+    ], CustomerController);
+    return CustomerController;
 }());
-exports.CategoryController = CategoryController;
+exports.CustomerController = CustomerController;

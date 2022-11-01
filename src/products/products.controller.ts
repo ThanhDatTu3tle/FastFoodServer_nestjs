@@ -5,7 +5,6 @@ import { CreateProductDto } from './dto/create-product.dto';
 // import { UpdateProductDto } from './dto/update-product.dto';
 import { Response } from 'express';
 import { ApiTags, ApiQuery, ApiCreatedResponse, ApiBadRequestResponse } from '@nestjs/swagger';
-import { CreateCategoryDto } from 'src/category/dto/create-category.dto';
 
 @ApiTags('Products')
 @Controller('products')
