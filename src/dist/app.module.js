@@ -25,6 +25,9 @@ var ormconfig_1 = require("../ormconfig");
 var typeorm_1 = require("@nestjs/typeorm");
 var products_module_1 = require("./products/products.module");
 var category_module_1 = require("./category/category.module");
+var customer_module_1 = require("./customer/customer.module");
+var address_module_1 = require("./address/address.module");
+var feedback_module_1 = require("./feedback/feedback.module");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -33,7 +36,7 @@ var AppModule = /** @class */ (function () {
             imports: [
                 typeorm_1.TypeOrmModule.forRoot(__assign(__assign({}, ormconfig_1["default"]), { autoLoadEntities: true })),
                 products_module_1.ProductsModule,
-                category_module_1.CategoryModule,
+                category_module_1.CategoryModule, customer_module_1.CustomerModule, address_module_1.AddressModule, feedback_module_1.FeedbackModule,
             ],
             controllers: [app_controller_1.AppController],
             providers: [app_service_1.AppService]

@@ -1,26 +1,71 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateAddressDto } from './dto/create-address.dto';
-import { UpdateAddressDto } from './dto/update-address.dto';
+// import { UpdateAddressDto } from './dto/update-address.dto';
+import { AddressRelations as relations  } from 'src/relations/relations';
+import { Danhsachdiachi as Address } from 'output/entities/Danhsachdiachi';
+import { Khachhang as Customer } from 'output/entities/Khachhang';
+import { Repository, getManager } from 'typeorm';
 
 @Injectable()
 export class AddressService {
-  create(createAddressDto: CreateAddressDto) {
-    return 'This action adds a new address';
+  constructor(
+    @InjectRepository(Address)
+    private addressRepository: Repository<Address>,
+
+    @InjectRepository(Customer)
+    private customerRepository: Repository<Customer>
+  ) {}
+
+  async create(createAddressDto: CreateAddressDto): Promise<Address> {  
+    try {
+      // Foreign key Khachhang: customer
+      const customerBody = createAddressDto.maKhachHang;
+      const customer = await this.customerRepository.findOneBy({
+        maKhachHang: customerBody
+      });
+
+      // create new product
+      const newAddress = this.addressRepository.create();
+      newAddress.maDiaChi = createAddressDto.maDiaChi;
+      newAddress.maKhachHang = customer;
+      newAddress.diaChi = createAddressDto.diaChi;
+      newAddress.tenDiaChi = createAddressDto.tenDiaChi;
+
+      await this.addressRepository.save(newAddress);
+
+      const findAndReturn = await this.addressRepository.findOneOrFail({
+        relations: relations,
+        where: { maDiaChi: newAddress.maDiaChi },
+      });
+      return findAndReturn;
+    } catch (err) {
+      throw err;
+    }
   }
 
-  findAll() {
-    return `This action returns all address`;
+  async getAll(): Promise<Address[]> {
+
+    const getAll = await this.addressRepository.find({
+      relations,
+    })
+    
+    return getAll;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} address`;
-  }
+  // findAll() {
+  //   return `This action returns all products`;
+  // }
 
-  update(id: number, updateAddressDto: UpdateAddressDto) {
-    return `This action updates a #${id} address`;
-  }
+  // findOne(id: number) {
+  //   return `This action returns a #${id} product`;
+  // }
 
-  remove(id: number) {
-    return `This action removes a #${id} address`;
-  }
+  // update(id: number, updateProductDto: UpdateProductDto) {
+  //   return `This action updates a #${id} product`;
+  // }
+
+  // remove(id: number) {
+  //   return `This action removes a #${id} product`;
+  // }
 }

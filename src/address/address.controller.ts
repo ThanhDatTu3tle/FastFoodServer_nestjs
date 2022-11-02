@@ -1,34 +1,55 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
 import { AddressService } from './address.service';
+import { Address } from './entities/address.entity';
 import { CreateAddressDto } from './dto/create-address.dto';
-import { UpdateAddressDto } from './dto/update-address.dto';
+// import { UpdateAddressDto } from './dto/update-address.dto';
+import { Response } from 'express';
+import { ApiTags, ApiQuery, ApiCreatedResponse, ApiBadRequestResponse } from '@nestjs/swagger';
 
+@ApiTags('Address')
 @Controller('address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}
 
   @Post()
-  create(@Body() createAddressDto: CreateAddressDto) {
-    return this.addressService.create(createAddressDto);
+  @ApiCreatedResponse({ type: Address })
+  @ApiBadRequestResponse()
+  async create(
+    @Body() createProductDto: CreateAddressDto,
+    @Res() res: Response,
+  ) {
+    try {
+      const newAddress = await this.addressService.create(
+        createProductDto,
+      );
+      res.status(201).json({ success: true, body: newAddress });
+    } catch (err) {
+      res.status(400).json({ success: false, message: err });
+    }
   }
 
   @Get()
-  findAll() {
-    return this.addressService.findAll();
+  async getAll() {
+    return this.addressService.getAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.addressService.findOne(+id);
-  }
+  // @Get()
+  // findAll() {
+  //   return this.productsService.findAll();
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAddressDto: UpdateAddressDto) {
-    return this.addressService.update(+id, updateAddressDto);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.productsService.findOne(+id);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.addressService.remove(+id);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
+  //   return this.productsService.update(+id, updateProductDto);
+  // }
+
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.productsService.remove(+id);
+  // }
 }
