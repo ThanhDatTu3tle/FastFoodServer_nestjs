@@ -111,6 +111,30 @@ var ProductsService = /** @class */ (function () {
             });
         });
     };
+    // findAll() {
+    //   return `This action returns all products`;
+    // }
+    ProductsService.prototype.findOneCategory = function (tenDanhMuc) {
+        return __awaiter(this, void 0, Promise, function () {
+            var product, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.productRepository.find({
+                                relations: relations_1.ProductRelations
+                            })];
+                    case 1:
+                        product = _a.sent();
+                        return [2 /*return*/, product];
+                    case 2:
+                        err_2 = _a.sent();
+                        throw err_2;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     ProductsService = __decorate([
         common_1.Injectable(),
         __param(0, typeorm_1.InjectRepository(Monan_1.Monan)),

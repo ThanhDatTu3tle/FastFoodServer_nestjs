@@ -81,6 +81,17 @@ var ProductsController = /** @class */ (function () {
             });
         });
     };
+    // @Get()
+    // findAll() {
+    //   return this.productsService.findAll();
+    // }
+    ProductsController.prototype.findOneCategory = function (tenDanhMuc) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.productsService.findOneCategory(tenDanhMuc)];
+            });
+        });
+    };
     __decorate([
         common_1.Post(),
         swagger_1.ApiCreatedResponse({ type: product_entity_1.Product }),
@@ -91,6 +102,10 @@ var ProductsController = /** @class */ (function () {
     __decorate([
         common_1.Get()
     ], ProductsController.prototype, "getAll");
+    __decorate([
+        common_1.Get(':tenDanhMuc'),
+        __param(0, common_1.Param('tenDanhMuc'))
+    ], ProductsController.prototype, "findOneCategory");
     ProductsController = __decorate([
         swagger_1.ApiTags('Products'),
         common_1.Controller('products')

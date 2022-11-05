@@ -37,9 +37,10 @@ export class ProductsService {
       newProduct.yeuThich = createProductDto.yeuThich;
 
       await this.productRepository.save(newProduct);
+      // console.log(this.productRepository)
 
       const findAndReturn = await this.productRepository.findOneOrFail({
-        relations: relations,
+        relations,
         where: { maMonAn: newProduct.maMonAn },
       });
       return findAndReturn;
@@ -61,9 +62,17 @@ export class ProductsService {
   //   return `This action returns all products`;
   // }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} product`;
-  // }
+  async findOneCategory(tenDanhMuc: string): Promise<Product[]> {
+    try {
+      const product = await this.productRepository.find({
+        relations,
+        // where: { tenDanhMuc: maDanhMuc.tenDanhMuc }
+      });
+      return product;
+    } catch (err) {
+      throw err;
+    }
+  }
 
   // update(id: number, updateProductDto: UpdateProductDto) {
   //   return `This action updates a #${id} product`;

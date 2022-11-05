@@ -38,10 +38,10 @@ export class ProductsController {
   //   return this.productsService.findAll();
   // }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.productsService.findOne(+id);
-  // }
+  @Get(':tenDanhMuc')
+  async findOneCategory(@Param('tenDanhMuc') tenDanhMuc: string) {
+    return this.productsService.findOneCategory(tenDanhMuc);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
