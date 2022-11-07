@@ -117,7 +117,7 @@ var ProductsService = /** @class */ (function () {
     // }
     ProductsService.prototype.findCategory = function (maDanhMuc) {
         return __awaiter(this, void 0, Promise, function () {
-            var category;
+            var category, product, arrChicken, arrHamburger, i, start, end_start;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.productRepository.find({
@@ -125,20 +125,27 @@ var ProductsService = /** @class */ (function () {
                         })];
                     case 1:
                         category = _a.sent();
+                        return [4 /*yield*/, this.productRepository.find()];
+                    case 2:
+                        product = _a.sent();
+                        arrChicken = [];
+                        arrHamburger = [];
+                        for (i = 0; i < product.length; i++) {
+                            if (product[i].maMonAn.charAt(5) === '0') {
+                                arrChicken.push(product[i]);
+                            }
+                            else if (product[i].maMonAn.charAt(5) === '1') {
+                                arrHamburger.push(product[i]);
+                            }
+                            // ...
+                        }
+                        start = 0;
+                        end_start = arrChicken.length;
                         if (maDanhMuc === 'MDM01') {
-                            return [2 /*return*/, category.slice(0, 8)];
+                            return [2 /*return*/, category.slice(start, end_start)];
                         }
                         else if (maDanhMuc === 'MDM02') {
-                            return [2 /*return*/, category.slice(8, 16)];
-                        }
-                        else if (maDanhMuc === 'MDM03') {
-                            return [2 /*return*/, category.slice(16, 24)];
-                        }
-                        else if (maDanhMuc === 'MDM04') {
-                            return [2 /*return*/, category.slice(24, 32)];
-                        }
-                        else if (maDanhMuc === 'MDM05') {
-                            return [2 /*return*/, category.slice(32, 40)];
+                            return [2 /*return*/, category.slice(end_start, end_start + arrHamburger.length)];
                         }
                         return [2 /*return*/];
                 }

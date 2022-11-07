@@ -67,19 +67,31 @@ export class ProductsService {
     const category = await this.productRepository.find({ 
       relations,
     })
+    const product = await this.productRepository.find();
 
-    if (maDanhMuc === 'MDM01') {
-      return category.slice(0, 8);
-    } else if (maDanhMuc === 'MDM02') {
-      return category.slice(8, 16);
-    } else if (maDanhMuc === 'MDM03') {
-      return category.slice(16, 24)
-    } else if (maDanhMuc === 'MDM04') {
-      return category.slice(24, 32)
-    } else if (maDanhMuc === 'MDM05') {
-      return category.slice(32, 40)
+    const arrChicken = [];
+    const arrHamburger = [];
+    for (let i = 0; i < product.length; i++) {
+      if (product[i].maMonAn.charAt(5) === '0') {
+        arrChicken.push(product[i])
+      } else if (product[i].maMonAn.charAt(5) === '1') {
+        arrHamburger.push(product[i])
+      }
+      // ...
     }
 
+    // console.log('arrChicken: ', arrChicken.length);
+    // console.log('arrHamburger: ', arrHamburger.length);
+
+    const start = 0;
+    const end_start = arrChicken.length;
+
+    if (maDanhMuc === 'MDM01') {
+      return category.slice(start, end_start); 
+    } else if (maDanhMuc === 'MDM02') {
+      return category.slice(end_start, end_start + arrHamburger.length); 
+    } 
+    // ...
   }
 
   // }
