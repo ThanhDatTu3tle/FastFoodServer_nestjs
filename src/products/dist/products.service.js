@@ -52,6 +52,7 @@ var typeorm_1 = require("@nestjs/typeorm");
 var relations_1 = require("src/relations/relations");
 var Monan_1 = require("../../output/entities/Monan");
 var Danhmuc_1 = require("../../output/entities/Danhmuc");
+// import { markAsUntransferable } from 'worker_threads';
 var ProductsService = /** @class */ (function () {
     function ProductsService(productRepository, categoriesRepository) {
         this.productRepository = productRepository;
@@ -65,7 +66,7 @@ var ProductsService = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
                         categoriesBody = createProductDto.maDanhMuc;
-                        return [4 /*yield*/, this.categoriesRepository.findOneBy({
+                        return [4 /*yield*/, this.categoriesRepository.findOneByOrFail({
                                 maDanhMuc: categoriesBody
                             })];
                     case 1:
@@ -114,23 +115,32 @@ var ProductsService = /** @class */ (function () {
     // findAll() {
     //   return `This action returns all products`;
     // }
-    ProductsService.prototype.findOneCategory = function (tenDanhMuc) {
+    ProductsService.prototype.findCategory = function (maDanhMuc) {
         return __awaiter(this, void 0, Promise, function () {
-            var product, err_2;
+            var category;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.productRepository.find({
-                                relations: relations_1.ProductRelations
-                            })];
+                    case 0: return [4 /*yield*/, this.productRepository.find({
+                            relations: relations_1.ProductRelations
+                        })];
                     case 1:
-                        product = _a.sent();
-                        return [2 /*return*/, product];
-                    case 2:
-                        err_2 = _a.sent();
-                        throw err_2;
-                    case 3: return [2 /*return*/];
+                        category = _a.sent();
+                        if (maDanhMuc === 'MDM01') {
+                            return [2 /*return*/, category.slice(0, 8)];
+                        }
+                        else if (maDanhMuc === 'MDM02') {
+                            return [2 /*return*/, category.slice(8, 16)];
+                        }
+                        else if (maDanhMuc === 'MDM03') {
+                            return [2 /*return*/, category.slice(16, 24)];
+                        }
+                        else if (maDanhMuc === 'MDM04') {
+                            return [2 /*return*/, category.slice(24, 32)];
+                        }
+                        else if (maDanhMuc === 'MDM05') {
+                            return [2 /*return*/, category.slice(32, 40)];
+                        }
+                        return [2 /*return*/];
                 }
             });
         });

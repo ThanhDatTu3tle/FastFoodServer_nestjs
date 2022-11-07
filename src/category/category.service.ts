@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateCategoryDto } from './dto/create-category.dto';
 // import { UpdateCategoryDto } from './dto/update-category.dto';
+// import { ProductRelations as relations } from 'src/relations/relations';
 import { Monan as Product } from '../../output/entities/Monan';
 import { Danhmuc as Category } from '../../output/entities/Danhmuc';
 import { Repository, getManager } from 'typeorm';
@@ -36,9 +37,13 @@ export class CategoryService {
   //   return `This action returns all categories`;
   // }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} category`;
-  // }
+  findOne(maDanhMuc: string): Promise<Category> {
+    const category =  this.categoryRepository.findOneBy({ maDanhMuc: maDanhMuc });
+
+    // console.log(category)
+
+    return category;
+  }
 
   // update(id: number, updateCategoryDto: UpdateCategoryDto) {
   //   return `This action updates a #${id} category`;

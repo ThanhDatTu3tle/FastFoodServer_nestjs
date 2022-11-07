@@ -6,6 +6,7 @@ import { ProductRelations as relations } from 'src/relations/relations';
 import { Monan as Product } from '../../output/entities/Monan';
 import { Danhmuc as Category } from '../../output/entities/Danhmuc';
 import { Repository, getManager } from 'typeorm';
+// import { markAsUntransferable } from 'worker_threads';
 
 @Injectable()
 export class ProductsService {
@@ -22,7 +23,7 @@ export class ProductsService {
     try {
       // Foreign key Danhmuc: categories
       const categoriesBody = createProductDto.maDanhMuc;
-      const categories = await this.categoriesRepository.findOneBy({
+      const categories = await this.categoriesRepository.findOneByOrFail({
         maDanhMuc: categoriesBody
       });
 
@@ -62,17 +63,26 @@ export class ProductsService {
   //   return `This action returns all products`;
   // }
 
-  async findOneCategory(tenDanhMuc: string): Promise<Product[]> {
-    try {
-      const product = await this.productRepository.find({
-        relations,
-        // where: { tenDanhMuc: maDanhMuc.tenDanhMuc }
-      });
-      return product;
-    } catch (err) {
-      throw err;
+  async findCategory(maDanhMuc: string): Promise<Product[]> {
+    const category = await this.productRepository.find({ 
+      relations,
+    })
+
+    if (maDanhMuc === 'MDM01') {
+      return category.slice(0, 8);
+    } else if (maDanhMuc === 'MDM02') {
+      return category.slice(8, 16);
+    } else if (maDanhMuc === 'MDM03') {
+      return category.slice(16, 24)
+    } else if (maDanhMuc === 'MDM04') {
+      return category.slice(24, 32)
+    } else if (maDanhMuc === 'MDM05') {
+      return category.slice(32, 40)
     }
+
   }
+
+  // }
 
   // update(id: number, updateProductDto: UpdateProductDto) {
   //   return `This action updates a #${id} product`;

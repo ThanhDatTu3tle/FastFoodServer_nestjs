@@ -5,7 +5,7 @@ import { Monan } from "./Monan";
 @Entity("DANHMUC", { schema: "dbo" })
 export class Danhmuc {
   @Column("nvarchar", { primary: true, name: "MaDanhMuc", length: 5 })
-  public maDanhMuc: string;
+  maDanhMuc: string;
 
   @Column("nvarchar", { name: "TenDanhMuc", length: 50 })
   tenDanhMuc: string;

@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { Category } from './entities/category.entity';
 import { CreateCategoryDto } from './dto/create-category.dto';
 // import { UpdateCategoryDto } from './dto/update-category.dto';
-import { ApiTags, ApiQuery, ApiCreatedResponse, ApiBadRequestResponse } from '@nestjs/swagger';
+import { ApiTags, ApiQuery, ApiCreatedResponse, ApiBadRequestResponse, ApiOkResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 
 @ApiTags('category')
 @Controller('category')
@@ -22,10 +22,10 @@ export class CategoryController {
     return this.categoryService.getAll();
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.categoryService.findOne(+id);
-  // }
+  @Get(':maDanhMuc')
+  findOne(@Param('maDanhMuc') maDanhMuc: string) {
+    return this.categoryService.findOne(maDanhMuc);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {

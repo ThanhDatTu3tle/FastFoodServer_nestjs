@@ -68,6 +68,9 @@ var CategoryController = /** @class */ (function () {
             });
         });
     };
+    CategoryController.prototype.findOne = function (maDanhMuc) {
+        return this.categoryService.findOne(maDanhMuc);
+    };
     __decorate([
         common_1.Post(),
         swagger_1.ApiCreatedResponse({ type: category_entity_1.Category }),
@@ -77,6 +80,10 @@ var CategoryController = /** @class */ (function () {
     __decorate([
         common_1.Get()
     ], CategoryController.prototype, "getAll");
+    __decorate([
+        common_1.Get(':maDanhMuc'),
+        __param(0, common_1.Param('maDanhMuc'))
+    ], CategoryController.prototype, "findOne");
     CategoryController = __decorate([
         swagger_1.ApiTags('category'),
         common_1.Controller('category')

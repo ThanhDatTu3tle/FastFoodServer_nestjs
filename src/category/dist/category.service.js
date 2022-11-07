@@ -49,6 +49,7 @@ exports.CategoryService = void 0;
 var common_1 = require("@nestjs/common");
 var typeorm_1 = require("@nestjs/typeorm");
 // import { UpdateCategoryDto } from './dto/update-category.dto';
+// import { ProductRelations as relations } from 'src/relations/relations';
 var Monan_1 = require("../../output/entities/Monan");
 var Danhmuc_1 = require("../../output/entities/Danhmuc");
 var CategoryService = /** @class */ (function () {
@@ -80,6 +81,14 @@ var CategoryService = /** @class */ (function () {
                 return [2 /*return*/, this.categoryRepository.find()];
             });
         });
+    };
+    // findAll() {
+    //   return `This action returns all categories`;
+    // }
+    CategoryService.prototype.findOne = function (maDanhMuc) {
+        var category = this.categoryRepository.findOneBy({ maDanhMuc: maDanhMuc });
+        // console.log(category)
+        return category;
     };
     CategoryService = __decorate([
         common_1.Injectable(),

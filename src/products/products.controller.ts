@@ -33,14 +33,9 @@ export class ProductsController {
     return this.productsService.getAll();
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.productsService.findAll();
-  // }
-
-  @Get(':tenDanhMuc')
-  async findOneCategory(@Param('tenDanhMuc') tenDanhMuc: string) {
-    return this.productsService.findOneCategory(tenDanhMuc);
+  @Get(':maDanhMuc')
+  async findCategory(@Param('maDanhMuc') maDanhMuc: string) {
+    return this.productsService.findCategory(maDanhMuc);
   }
 
   // @Patch(':id')
