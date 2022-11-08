@@ -10,8 +10,14 @@ const AddressRelations = [
   'maKhachHang',
 ]
 
+const OrderRelations = [
+  'maKhachHang',
+  'maDiaChi',
+]
+
 export {
   ProductRelations,
   FeedbackRelations,
-  AddressRelations
+  AddressRelations,
+  OrderRelations,
 };
