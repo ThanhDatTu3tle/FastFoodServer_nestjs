@@ -15,9 +15,15 @@ const OrderRelations = [
   'maDiaChi',
 ]
 
+const FavoriteRelations = [
+  'maKhachHang',
+  'maMonAn',
+]
+
 export {
   ProductRelations,
   FeedbackRelations,
   AddressRelations,
   OrderRelations,
+  FavoriteRelations,
 };

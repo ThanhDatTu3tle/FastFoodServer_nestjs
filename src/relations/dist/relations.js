@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.OrderRelations = exports.AddressRelations = exports.FeedbackRelations = exports.ProductRelations = void 0;
+exports.FavoriteRelations = exports.OrderRelations = exports.AddressRelations = exports.FeedbackRelations = exports.ProductRelations = void 0;
 var ProductRelations = [
     'maDanhMuc',
 ];
@@ -18,3 +18,8 @@ var OrderRelations = [
     'maDiaChi',
 ];
 exports.OrderRelations = OrderRelations;
+var FavoriteRelations = [
+    'maKhachHang',
+    'maMonAn',
+];
+exports.FavoriteRelations = FavoriteRelations;
