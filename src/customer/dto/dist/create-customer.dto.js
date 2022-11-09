@@ -19,9 +19,6 @@ var CreateCustomerDto = /** @class */ (function () {
     ], CreateCustomerDto.prototype, "hoTen");
     __decorate([
         swagger_1.ApiProperty()
-    ], CreateCustomerDto.prototype, "ngaySinh");
-    __decorate([
-        swagger_1.ApiProperty()
     ], CreateCustomerDto.prototype, "soDienThoai");
     __decorate([
         swagger_1.ApiProperty()

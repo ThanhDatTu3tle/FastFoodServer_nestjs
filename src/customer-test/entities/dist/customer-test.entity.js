@@ -6,29 +6,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.Customer = void 0;
+exports.CustomerTest = void 0;
 var swagger_1 = require("@nestjs/swagger");
-var Customer = /** @class */ (function () {
-    function Customer() {
+var CustomerTest = /** @class */ (function () {
+    function CustomerTest() {
     }
     __decorate([
         swagger_1.ApiProperty()
-    ], Customer.prototype, "maKhachHang");
+    ], CustomerTest.prototype, "maKhachHang");
     __decorate([
         swagger_1.ApiProperty()
-    ], Customer.prototype, "hoTen");
+    ], CustomerTest.prototype, "hoTen");
     __decorate([
         swagger_1.ApiProperty()
-    ], Customer.prototype, "soDienThoai");
+    ], CustomerTest.prototype, "soDienThoai");
     __decorate([
         swagger_1.ApiProperty()
-    ], Customer.prototype, "email");
+    ], CustomerTest.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
-    ], Customer.prototype, "matKhau");
-    __decorate([
-        swagger_1.ApiProperty()
-    ], Customer.prototype, "hinhAnh");
-    return Customer;
+    ], CustomerTest.prototype, "matKhau");
+    return CustomerTest;
 }());
-exports.Customer = Customer;
+exports.CustomerTest = CustomerTest;

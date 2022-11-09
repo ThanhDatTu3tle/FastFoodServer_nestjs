@@ -7,8 +7,6 @@ export class CreateCustomerDto {
   @ApiProperty()
   hoTen: string;
   @ApiProperty()
-  ngaySinh: Date;
-  @ApiProperty()
   soDienThoai: string;
   @ApiProperty()
   email: string;

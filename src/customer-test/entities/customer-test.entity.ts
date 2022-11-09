@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class Customer {
-  
+export class CustomerTest {
   @ApiProperty()
   maKhachHang: string;
   @ApiProperty()
@@ -12,6 +11,6 @@ export class Customer {
   email: string;
   @ApiProperty()
   matKhau: string;
-  @ApiProperty()
-  hinhAnh: string;
+  // @ApiProperty()
+  // hinhAnh: string;
 }

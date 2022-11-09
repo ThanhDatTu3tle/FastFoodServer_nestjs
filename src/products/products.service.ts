@@ -71,11 +71,14 @@ export class ProductsService {
 
     const arrChicken = [];
     const arrHamburger = [];
+    const arrRicepasta = [];
     for (let i = 0; i < product.length; i++) {
       if (product[i].maMonAn.charAt(5) === '0') {
         arrChicken.push(product[i])
       } else if (product[i].maMonAn.charAt(5) === '1') {
         arrHamburger.push(product[i])
+      } else if (product[i].maMonAn.charAt(5) === '2') {
+        arrRicepasta.push(product[i])
       }
       // ...
     }
@@ -90,6 +93,8 @@ export class ProductsService {
       return category.slice(start, end_start); 
     } else if (maDanhMuc === 'MDM02') {
       return category.slice(end_start, end_start + arrHamburger.length); 
+    } else if (maDanhMuc === 'MDM03') {
+      return category.slice(end_start + arrHamburger.length, end_start + arrHamburger.length + arrRicepasta.length); 
     } 
     // ...
   }

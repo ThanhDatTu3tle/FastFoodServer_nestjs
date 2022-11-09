@@ -13,8 +13,8 @@ export class Khachhang {
   @Column("nvarchar", { name: "HoTen", length: 50 })
   hoTen: string;
 
-  @Column("smalldatetime", { name: "NgaySinh" })
-  ngaySinh: Date;
+  // @Column("smalldatetime", { name: "NgaySinh" })
+  // ngaySinh: Date;
 
   @Column("nvarchar", { name: "SoDienThoai", length: 10 })
   soDienThoai: string;
@@ -25,7 +25,7 @@ export class Khachhang {
   @Column("nvarchar", { name: "MatKhau", length: 50 })
   matKhau: string;
 
-  @Column("nvarchar", { name: "HinhAnh", length: 250 })
+  @Column("nvarchar", { name: "HinhAnh", length: 250, default: 'avatar' })
   hinhAnh: string;
 
   @OneToMany(

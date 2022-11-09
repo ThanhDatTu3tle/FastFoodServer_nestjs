@@ -45,47 +45,38 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.CustomerService = void 0;
+exports.CustomerTestController = void 0;
 var common_1 = require("@nestjs/common");
-var typeorm_1 = require("@nestjs/typeorm");
-// import { UpdateCustomerDto } from './dto/update-customer.dto';
-var Khachhang_1 = require("output/entities/Khachhang");
-var CustomerService = /** @class */ (function () {
-    function CustomerService(customerRepository) {
-        this.customerRepository = customerRepository;
+var customer_test_entity_1 = require("./entities/customer-test.entity");
+// import { UpdateCustomerTestDto } from './dto/update-customer-test.dto';
+var swagger_1 = require("@nestjs/swagger");
+var CustomerTestController = /** @class */ (function () {
+    function CustomerTestController(customerTestService) {
+        this.customerTestService = customerTestService;
     }
-    CustomerService.prototype.create = function (createCustomerDto) {
+    CustomerTestController.prototype.create = function (createCustomerTestDto) {
+        return this.customerTestService.create(createCustomerTestDto);
+    };
+    CustomerTestController.prototype.findAll = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var newCustomer;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        newCustomer = this.customerRepository.create();
-                        newCustomer.maKhachHang = createCustomerDto.maKhachHang;
-                        newCustomer.hoTen = createCustomerDto.hoTen;
-                        newCustomer.soDienThoai = createCustomerDto.soDienThoai;
-                        newCustomer.email = createCustomerDto.email;
-                        newCustomer.matKhau = createCustomerDto.matKhau;
-                        newCustomer.hinhAnh = createCustomerDto.hinhAnh;
-                        return [4 /*yield*/, this.customerRepository.save(newCustomer)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
+                return [2 /*return*/, this.customerTestService.findAll()];
             });
         });
     };
-    CustomerService.prototype.getAll = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, this.customerRepository.find()];
-            });
-        });
-    };
-    CustomerService = __decorate([
-        common_1.Injectable(),
-        __param(0, typeorm_1.InjectRepository(Khachhang_1.Khachhang))
-    ], CustomerService);
-    return CustomerService;
+    __decorate([
+        common_1.Post(),
+        swagger_1.ApiCreatedResponse({ type: customer_test_entity_1.CustomerTest }),
+        swagger_1.ApiBadRequestResponse(),
+        __param(0, common_1.Body())
+    ], CustomerTestController.prototype, "create");
+    __decorate([
+        common_1.Get()
+    ], CustomerTestController.prototype, "findAll");
+    CustomerTestController = __decorate([
+        swagger_1.ApiTags('customer-test'),
+        common_1.Controller('customer-test')
+    ], CustomerTestController);
+    return CustomerTestController;
 }());
-exports.CustomerService = CustomerService;
+exports.CustomerTestController = CustomerTestController;

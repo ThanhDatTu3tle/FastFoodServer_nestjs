@@ -23,9 +23,6 @@ var Khachhang = /** @class */ (function () {
         typeorm_1.Column("nvarchar", { name: "HoTen", length: 50 })
     ], Khachhang.prototype, "hoTen");
     __decorate([
-        typeorm_1.Column("smalldatetime", { name: "NgaySinh" })
-    ], Khachhang.prototype, "ngaySinh");
-    __decorate([
         typeorm_1.Column("nvarchar", { name: "SoDienThoai", length: 10 })
     ], Khachhang.prototype, "soDienThoai");
     __decorate([
@@ -35,7 +32,7 @@ var Khachhang = /** @class */ (function () {
         typeorm_1.Column("nvarchar", { name: "MatKhau", length: 50 })
     ], Khachhang.prototype, "matKhau");
     __decorate([
-        typeorm_1.Column("nvarchar", { name: "HinhAnh", length: 250 })
+        typeorm_1.Column("nvarchar", { name: "HinhAnh", length: 250, "default": 'avatar' })
     ], Khachhang.prototype, "hinhAnh");
     __decorate([
         typeorm_1.OneToMany(function () { return Chitietdonhang_1.Chitietdonhang; }, function (chitietdonhang) { return chitietdonhang.maKhachHang; })

@@ -10,7 +10,7 @@ export class CustomerService {
 
   constructor(
     @InjectRepository(Customer)
-    private productRepository: Repository<Customer>,
+    private customerRepository: Repository<Customer>,
 
     // @InjectRepository(Category)
     // private categoryRepository: Repository<Category>
@@ -19,20 +19,19 @@ export class CustomerService {
   async create(createCustomerDto: CreateCustomerDto) {
 
     // create new categories
-    const newCustomer = this.productRepository.create();
+    const newCustomer = this.customerRepository.create();
     newCustomer.maKhachHang = createCustomerDto.maKhachHang;
     newCustomer.hoTen = createCustomerDto.hoTen;
-    newCustomer.ngaySinh = createCustomerDto.ngaySinh;
     newCustomer.soDienThoai = createCustomerDto.soDienThoai;
     newCustomer.email = createCustomerDto.email;
     newCustomer.matKhau = createCustomerDto.matKhau;
     newCustomer.hinhAnh = createCustomerDto.hinhAnh;
 
-    await this.productRepository.save(newCustomer);
+    await this.customerRepository.save(newCustomer);
   }
 
   async getAll() {
-    return this.productRepository.find();
+    return this.customerRepository.find();
   }
 
   // findAll() {
