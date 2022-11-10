@@ -6,5 +6,5 @@ export class CreateFavoriteDto {
   @ApiProperty()
   maMonAn: string;
   @ApiProperty()
-  maKhachHang: string;
+  email: string;
 }

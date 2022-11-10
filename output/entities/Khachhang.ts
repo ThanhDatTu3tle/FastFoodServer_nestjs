@@ -4,11 +4,11 @@ import { Danhsachdiachi } from "./Danhsachdiachi";
 import { Monanyeuthich } from "./Monanyeuthich";
 import { Ykienkhachhang } from "./Ykienkhachhang";
 
-// @Index("PK__KHACHHAN__88D2F0E54D7AB015", ["maKhachHang"], { unique: true })
+// @Index("PK__KHACHHAN__A9D1053566452320", ["email"], { unique: true })
 @Entity("KHACHHANG", { schema: "dbo" })
 export class Khachhang {
-  @Column("nvarchar", { primary: true, name: "MaKhachHang", length: 10 })
-  maKhachHang: string;
+  @Column("nvarchar", { primary: true, name: "Email", length: 50 })
+  email: string;
 
   @Column("nvarchar", { name: "HoTen", length: 50 })
   hoTen: string;
@@ -19,33 +19,21 @@ export class Khachhang {
   @Column("nvarchar", { name: "SoDienThoai", length: 10 })
   soDienThoai: string;
 
-  @Column("nvarchar", { name: "Email", length: 50 })
-  email: string;
-
   @Column("nvarchar", { name: "MatKhau", length: 50 })
   matKhau: string;
 
-  @Column("nvarchar", { name: "HinhAnh", length: 250, default: 'avatar' })
+  @Column("nvarchar", { name: "HinhAnh", length: 250 })
   hinhAnh: string;
 
-  @OneToMany(
-    () => Chitietdonhang,
-    (chitietdonhang) => chitietdonhang.maKhachHang
-  )
+  @OneToMany(() => Chitietdonhang, (chitietdonhang) => chitietdonhang.email)
   chitietdonhangs: Chitietdonhang[];
 
-  @OneToMany(
-    () => Danhsachdiachi,
-    (danhsachdiachi) => danhsachdiachi.maKhachHang
-  )
+  @OneToMany(() => Danhsachdiachi, (danhsachdiachi) => danhsachdiachi.email)
   danhsachdiachis: Danhsachdiachi[];
 
-  @OneToMany(() => Monanyeuthich, (monanyeuthich) => monanyeuthich.maKhachHang)
+  @OneToMany(() => Monanyeuthich, (monanyeuthich) => monanyeuthich.email)
   monanyeuthiches: Monanyeuthich[];
 
-  @OneToMany(
-    () => Ykienkhachhang,
-    (ykienkhachhang) => ykienkhachhang.maKhachHang
-  )
+  @OneToMany(() => Ykienkhachhang, (ykienkhachhang) => ykienkhachhang.email)
   ykienkhachhangs: Ykienkhachhang[];
 }

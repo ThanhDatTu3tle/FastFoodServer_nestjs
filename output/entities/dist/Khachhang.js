@@ -12,13 +12,13 @@ var Chitietdonhang_1 = require("./Chitietdonhang");
 var Danhsachdiachi_1 = require("./Danhsachdiachi");
 var Monanyeuthich_1 = require("./Monanyeuthich");
 var Ykienkhachhang_1 = require("./Ykienkhachhang");
-// @Index("PK__KHACHHAN__88D2F0E54D7AB015", ["maKhachHang"], { unique: true })
+// @Index("PK__KHACHHAN__A9D1053566452320", ["email"], { unique: true })
 var Khachhang = /** @class */ (function () {
     function Khachhang() {
     }
     __decorate([
-        typeorm_1.Column("nvarchar", { primary: true, name: "MaKhachHang", length: 10 })
-    ], Khachhang.prototype, "maKhachHang");
+        typeorm_1.Column("nvarchar", { primary: true, name: "Email", length: 50 })
+    ], Khachhang.prototype, "email");
     __decorate([
         typeorm_1.Column("nvarchar", { name: "HoTen", length: 50 })
     ], Khachhang.prototype, "hoTen");
@@ -26,25 +26,22 @@ var Khachhang = /** @class */ (function () {
         typeorm_1.Column("nvarchar", { name: "SoDienThoai", length: 10 })
     ], Khachhang.prototype, "soDienThoai");
     __decorate([
-        typeorm_1.Column("nvarchar", { name: "Email", length: 50 })
-    ], Khachhang.prototype, "email");
-    __decorate([
         typeorm_1.Column("nvarchar", { name: "MatKhau", length: 50 })
     ], Khachhang.prototype, "matKhau");
     __decorate([
-        typeorm_1.Column("nvarchar", { name: "HinhAnh", length: 250, "default": 'avatar' })
+        typeorm_1.Column("nvarchar", { name: "HinhAnh", length: 250 })
     ], Khachhang.prototype, "hinhAnh");
     __decorate([
-        typeorm_1.OneToMany(function () { return Chitietdonhang_1.Chitietdonhang; }, function (chitietdonhang) { return chitietdonhang.maKhachHang; })
+        typeorm_1.OneToMany(function () { return Chitietdonhang_1.Chitietdonhang; }, function (chitietdonhang) { return chitietdonhang.email; })
     ], Khachhang.prototype, "chitietdonhangs");
     __decorate([
-        typeorm_1.OneToMany(function () { return Danhsachdiachi_1.Danhsachdiachi; }, function (danhsachdiachi) { return danhsachdiachi.maKhachHang; })
+        typeorm_1.OneToMany(function () { return Danhsachdiachi_1.Danhsachdiachi; }, function (danhsachdiachi) { return danhsachdiachi.email; })
     ], Khachhang.prototype, "danhsachdiachis");
     __decorate([
-        typeorm_1.OneToMany(function () { return Monanyeuthich_1.Monanyeuthich; }, function (monanyeuthich) { return monanyeuthich.maKhachHang; })
+        typeorm_1.OneToMany(function () { return Monanyeuthich_1.Monanyeuthich; }, function (monanyeuthich) { return monanyeuthich.email; })
     ], Khachhang.prototype, "monanyeuthiches");
     __decorate([
-        typeorm_1.OneToMany(function () { return Ykienkhachhang_1.Ykienkhachhang; }, function (ykienkhachhang) { return ykienkhachhang.maKhachHang; })
+        typeorm_1.OneToMany(function () { return Ykienkhachhang_1.Ykienkhachhang; }, function (ykienkhachhang) { return ykienkhachhang.email; })
     ], Khachhang.prototype, "ykienkhachhangs");
     Khachhang = __decorate([
         typeorm_1.Entity("KHACHHANG", { schema: "dbo" })

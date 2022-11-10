@@ -66,9 +66,9 @@ var FavoriteService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 5, , 6]);
-                        customerBody = createFavoriteDto.maKhachHang;
+                        customerBody = createFavoriteDto.email;
                         return [4 /*yield*/, this.customerRepository.findOneByOrFail({
-                                maKhachHang: customerBody
+                                email: customerBody
                             })];
                     case 1:
                         customers = _a.sent();
@@ -81,7 +81,7 @@ var FavoriteService = /** @class */ (function () {
                         newFavorite = this.favoriteRepository.create();
                         newFavorite.maMonAnYeuThich = createFavoriteDto.maMonAnYeuThich;
                         newFavorite.maMonAn = products;
-                        newFavorite.maKhachHang = customers;
+                        newFavorite.email = customers;
                         return [4 /*yield*/, this.favoriteRepository.save(newFavorite)];
                     case 3:
                         _a.sent();

@@ -13,16 +13,13 @@ var CreateCustomerDto = /** @class */ (function () {
     }
     __decorate([
         swagger_1.ApiProperty()
-    ], CreateCustomerDto.prototype, "maKhachHang");
+    ], CreateCustomerDto.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
     ], CreateCustomerDto.prototype, "hoTen");
     __decorate([
         swagger_1.ApiProperty()
     ], CreateCustomerDto.prototype, "soDienThoai");
-    __decorate([
-        swagger_1.ApiProperty()
-    ], CreateCustomerDto.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
     ], CreateCustomerDto.prototype, "matKhau");

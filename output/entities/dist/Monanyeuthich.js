@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.Monanyeuthich = void 0;
 var typeorm_1 = require("typeorm");
-var Khachhang_1 = require("./Khachhang");
 var Monan_1 = require("./Monan");
-// @Index("PK__MONANYEU__DDD505B9671F6DF5", ["maMonAnYeuThich"], { unique: true })
+var Khachhang_1 = require("./Khachhang");
+// @Index("PK__MONANYEU__DDD505B9EE73AACC", ["maMonAnYeuThich"], { unique: true })
 var Monanyeuthich = /** @class */ (function () {
     function Monanyeuthich() {
     }
@@ -18,13 +18,13 @@ var Monanyeuthich = /** @class */ (function () {
         typeorm_1.Column("nvarchar", { primary: true, name: "MaMonAnYeuThich", length: 10 })
     ], Monanyeuthich.prototype, "maMonAnYeuThich");
     __decorate([
-        typeorm_1.ManyToOne(function () { return Khachhang_1.Khachhang; }, function (khachhang) { return khachhang.monanyeuthiches; }),
-        typeorm_1.JoinColumn([{ name: "MaKhachHang", referencedColumnName: "maKhachHang" }])
-    ], Monanyeuthich.prototype, "maKhachHang");
-    __decorate([
         typeorm_1.ManyToOne(function () { return Monan_1.Monan; }, function (monan) { return monan.monanyeuthiches; }),
         typeorm_1.JoinColumn([{ name: "MaMonAn", referencedColumnName: "maMonAn" }])
     ], Monanyeuthich.prototype, "maMonAn");
+    __decorate([
+        typeorm_1.ManyToOne(function () { return Khachhang_1.Khachhang; }, function (khachhang) { return khachhang.monanyeuthiches; }),
+        typeorm_1.JoinColumn([{ name: "Email", referencedColumnName: "email" }])
+    ], Monanyeuthich.prototype, "email");
     Monanyeuthich = __decorate([
         typeorm_1.Entity("MONANYEUTHICH", { schema: "dbo" })
     ], Monanyeuthich);

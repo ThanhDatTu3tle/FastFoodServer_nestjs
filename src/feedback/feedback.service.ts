@@ -20,15 +20,15 @@ export class FeedbackService {
   async create(createFeedbackDto: CreateFeedbackDto): Promise<Feedback> {  
     try {
       // Foreign key Khachhang: customer
-      const customerBody = createFeedbackDto.maKhachHang;
+      const customerBody = createFeedbackDto.email;
       const customer = await this.customerRepository.findOneBy({
-        maKhachHang: customerBody
+        email: customerBody
       });
 
       // create new product
       const newFeedback = this.feedbackRepository.create();
       newFeedback.maYKien = createFeedbackDto.maYKien;
-      newFeedback.maKhachHang = customer;
+      newFeedback.email = customer;
       newFeedback.noiDung = createFeedbackDto.noiDung;
       newFeedback.danhGia = createFeedbackDto.danhGia;
 

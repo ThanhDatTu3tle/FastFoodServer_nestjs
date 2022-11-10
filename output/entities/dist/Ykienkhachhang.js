@@ -9,7 +9,7 @@ exports.__esModule = true;
 exports.Ykienkhachhang = void 0;
 var typeorm_1 = require("typeorm");
 var Khachhang_1 = require("./Khachhang");
-// @Index("PK__YKIENKHA__A84C6BFD2CCA21EB", ["maYKien"], { unique: true })
+// @Index("PK__YKIENKHA__A84C6BFD50AB3EA9", ["maYKien"], { unique: true })
 var Ykienkhachhang = /** @class */ (function () {
     function Ykienkhachhang() {
     }
@@ -24,8 +24,8 @@ var Ykienkhachhang = /** @class */ (function () {
     ], Ykienkhachhang.prototype, "danhGia");
     __decorate([
         typeorm_1.ManyToOne(function () { return Khachhang_1.Khachhang; }, function (khachhang) { return khachhang.ykienkhachhangs; }),
-        typeorm_1.JoinColumn([{ name: "MaKhachHang", referencedColumnName: "maKhachHang" }])
-    ], Ykienkhachhang.prototype, "maKhachHang");
+        typeorm_1.JoinColumn([{ name: "Email", referencedColumnName: "email" }])
+    ], Ykienkhachhang.prototype, "email");
     Ykienkhachhang = __decorate([
         typeorm_1.Entity("YKIENKHACHHANG", { schema: "dbo" })
     ], Ykienkhachhang);

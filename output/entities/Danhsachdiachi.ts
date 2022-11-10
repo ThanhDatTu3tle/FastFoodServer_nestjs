@@ -9,7 +9,7 @@ import {
 import { Chitietdonhang } from "./Chitietdonhang";
 import { Khachhang } from "./Khachhang";
 
-// @Index("PK__DANHSACH__EB61213EBA6B6EA3", ["maDiaChi"], { unique: true })
+// @Index("PK__DANHSACH__EB61213E3DEA53AF", ["maDiaChi"], { unique: true })
 @Entity("DANHSACHDIACHI", { schema: "dbo" })
 export class Danhsachdiachi {
   @Column("nvarchar", { primary: true, name: "MaDiaChi", length: 10 })
@@ -25,6 +25,6 @@ export class Danhsachdiachi {
   chitietdonhangs: Chitietdonhang[];
 
   @ManyToOne(() => Khachhang, (khachhang) => khachhang.danhsachdiachis)
-  @JoinColumn([{ name: "MaKhachHang", referencedColumnName: "maKhachHang" }])
-  maKhachHang: Khachhang;
+  @JoinColumn([{ name: "Email", referencedColumnName: "email" }])
+  email: Khachhang;
 }

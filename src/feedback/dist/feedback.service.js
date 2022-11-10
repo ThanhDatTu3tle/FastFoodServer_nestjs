@@ -64,15 +64,15 @@ var FeedbackService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
-                        customerBody = createFeedbackDto.maKhachHang;
+                        customerBody = createFeedbackDto.email;
                         return [4 /*yield*/, this.customerRepository.findOneBy({
-                                maKhachHang: customerBody
+                                email: customerBody
                             })];
                     case 1:
                         customer = _a.sent();
                         newFeedback = this.feedbackRepository.create();
                         newFeedback.maYKien = createFeedbackDto.maYKien;
-                        newFeedback.maKhachHang = customer;
+                        newFeedback.email = customer;
                         newFeedback.noiDung = createFeedbackDto.noiDung;
                         newFeedback.danhGia = createFeedbackDto.danhGia;
                         return [4 /*yield*/, this.feedbackRepository.save(newFeedback)];

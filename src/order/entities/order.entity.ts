@@ -4,7 +4,7 @@ export class Order {
   @ApiProperty()
   maChiTietDonHang: string;
   @ApiProperty()
-  maKhachHang: string;
+  email: string;
   @ApiProperty()
   maDiaChi: string;
   @ApiProperty()

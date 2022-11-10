@@ -10,7 +10,7 @@ exports.Danhsachdiachi = void 0;
 var typeorm_1 = require("typeorm");
 var Chitietdonhang_1 = require("./Chitietdonhang");
 var Khachhang_1 = require("./Khachhang");
-// @Index("PK__DANHSACH__EB61213EBA6B6EA3", ["maDiaChi"], { unique: true })
+// @Index("PK__DANHSACH__EB61213E3DEA53AF", ["maDiaChi"], { unique: true })
 var Danhsachdiachi = /** @class */ (function () {
     function Danhsachdiachi() {
     }
@@ -28,8 +28,8 @@ var Danhsachdiachi = /** @class */ (function () {
     ], Danhsachdiachi.prototype, "chitietdonhangs");
     __decorate([
         typeorm_1.ManyToOne(function () { return Khachhang_1.Khachhang; }, function (khachhang) { return khachhang.danhsachdiachis; }),
-        typeorm_1.JoinColumn([{ name: "MaKhachHang", referencedColumnName: "maKhachHang" }])
-    ], Danhsachdiachi.prototype, "maKhachHang");
+        typeorm_1.JoinColumn([{ name: "Email", referencedColumnName: "email" }])
+    ], Danhsachdiachi.prototype, "email");
     Danhsachdiachi = __decorate([
         typeorm_1.Entity("DANHSACHDIACHI", { schema: "dbo" })
     ], Danhsachdiachi);

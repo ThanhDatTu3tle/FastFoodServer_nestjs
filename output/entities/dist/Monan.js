@@ -8,20 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.Monan = void 0;
 var typeorm_1 = require("typeorm");
-var Chitiethoadon_1 = require("./Chitiethoadon");
 var Danhmuc_1 = require("./Danhmuc");
+var MonanDonhang_1 = require("./MonanDonhang");
+var MonanNguyenlieu_1 = require("./MonanNguyenlieu");
 var Monanyeuthich_1 = require("./Monanyeuthich");
-// @Index("PK__MONAN__B117162537297AD8", ["maMonAn"], { unique: true })
+// @Index("PK__MONAN__B1171625C1226914", ["maMonAn"], { unique: true })
 var Monan = /** @class */ (function () {
     function Monan() {
     }
     __decorate([
         typeorm_1.Column("nvarchar", { primary: true, name: "MaMonAn", length: 10 })
     ], Monan.prototype, "maMonAn");
-    __decorate([
-        typeorm_1.ManyToOne(function () { return Danhmuc_1.Danhmuc; }, function (danhmuc) { return danhmuc.monans; }),
-        typeorm_1.JoinColumn([{ name: "MaDanhMuc", referencedColumnName: "maDanhMuc" }])
-    ], Monan.prototype, "maDanhMuc");
     __decorate([
         typeorm_1.Column("nvarchar", { name: "TenMonAn", length: 50 })
     ], Monan.prototype, "tenMonAn");
@@ -38,8 +35,15 @@ var Monan = /** @class */ (function () {
         typeorm_1.Column("bit", { name: "YeuThich" })
     ], Monan.prototype, "yeuThich");
     __decorate([
-        typeorm_1.OneToOne(function () { return Chitiethoadon_1.Chitiethoadon; }, function (chitiethoadon) { return chitiethoadon.maMonAn2; })
-    ], Monan.prototype, "chitiethoadon");
+        typeorm_1.ManyToOne(function () { return Danhmuc_1.Danhmuc; }, function (danhmuc) { return danhmuc.monans; }),
+        typeorm_1.JoinColumn([{ name: "MaDanhMuc", referencedColumnName: "maDanhMuc" }])
+    ], Monan.prototype, "maDanhMuc");
+    __decorate([
+        typeorm_1.OneToMany(function () { return MonanDonhang_1.MonanDonhang; }, function (monanDonhang) { return monanDonhang.maMonAn2; })
+    ], Monan.prototype, "monanDonhangs");
+    __decorate([
+        typeorm_1.OneToMany(function () { return MonanNguyenlieu_1.MonanNguyenlieu; }, function (monanNguyenlieu) { return monanNguyenlieu.maMonAn2; })
+    ], Monan.prototype, "monanNguyenlieus");
     __decorate([
         typeorm_1.OneToMany(function () { return Monanyeuthich_1.Monanyeuthich; }, function (monanyeuthich) { return monanyeuthich.maMonAn; })
     ], Monan.prototype, "monanyeuthiches");

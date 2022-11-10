@@ -17,15 +17,19 @@ export class CustomerService {
   ) {}
 
   async create(createCustomerDto: CreateCustomerDto) {
+    const email = localStorage.getItem('email')
+    const hoTen = localStorage.getItem('hoTen')
+    const soDienThoai = localStorage.getItem('soDienThoai')
+    const matKhau = localStorage.getItem('matKhau')
 
     // create new categories
     const newCustomer = this.customerRepository.create();
-    newCustomer.maKhachHang = createCustomerDto.maKhachHang;
-    newCustomer.hoTen = createCustomerDto.hoTen;
-    newCustomer.soDienThoai = createCustomerDto.soDienThoai;
-    newCustomer.email = createCustomerDto.email;
-    newCustomer.matKhau = createCustomerDto.matKhau;
-    newCustomer.hinhAnh = createCustomerDto.hinhAnh;
+    // newCustomer.maKhachHang = createCustomerDto.maKhachHang;
+    newCustomer.email = email;
+    newCustomer.hoTen = hoTen;
+    newCustomer.soDienThoai = soDienThoai;
+    newCustomer.matKhau = matKhau;
+    newCustomer.hinhAnh = 'avatar';
 
     await this.customerRepository.save(newCustomer);
   }

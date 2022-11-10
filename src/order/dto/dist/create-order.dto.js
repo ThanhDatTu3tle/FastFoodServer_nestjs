@@ -16,7 +16,7 @@ var CreateOrderDto = /** @class */ (function () {
     ], CreateOrderDto.prototype, "maChiTietDonHang");
     __decorate([
         swagger_1.ApiProperty()
-    ], CreateOrderDto.prototype, "maKhachHang");
+    ], CreateOrderDto.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
     ], CreateOrderDto.prototype, "maDiaChi");

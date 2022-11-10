@@ -8,9 +8,9 @@ import {
 } from "typeorm";
 import { Khachhang } from "./Khachhang";
 import { Danhsachdiachi } from "./Danhsachdiachi";
-import { Chitiethoadon } from "./Chitiethoadon";
+import { MonanDonhang } from "./MonanDonhang";
 
-//@Index("PK__CHITIETD__4B0B45DDE6AF50D4", ["maChiTietDonHang"], { unique: true })
+// @Index("PK__CHITIETD__4B0B45DD0DD6F11D", ["maChiTietDonHang"], { unique: true })
 @Entity("CHITIETDONHANG", { schema: "dbo" })
 export class Chitietdonhang {
   @Column("nvarchar", { primary: true, name: "MaChiTietDonHang", length: 10 })
@@ -32,8 +32,8 @@ export class Chitietdonhang {
   trangThai: string;
 
   @ManyToOne(() => Khachhang, (khachhang) => khachhang.chitietdonhangs)
-  @JoinColumn([{ name: "MaKhachHang", referencedColumnName: "maKhachHang" }])
-  maKhachHang: Khachhang;
+  @JoinColumn([{ name: "Email", referencedColumnName: "email" }])
+  email: Khachhang;
 
   @ManyToOne(
     () => Danhsachdiachi,
@@ -43,8 +43,8 @@ export class Chitietdonhang {
   maDiaChi: Danhsachdiachi;
 
   @OneToMany(
-    () => Chitiethoadon,
-    (chitiethoadon) => chitiethoadon.maChiTietDonHang
+    () => MonanDonhang,
+    (monanDonhang) => monanDonhang.maChiTietDonHang2
   )
-  chitiethoadons: Chitiethoadon[];
+  monanDonhangs: MonanDonhang[];
 }

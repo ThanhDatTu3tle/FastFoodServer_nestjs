@@ -10,8 +10,8 @@ exports.Chitietdonhang = void 0;
 var typeorm_1 = require("typeorm");
 var Khachhang_1 = require("./Khachhang");
 var Danhsachdiachi_1 = require("./Danhsachdiachi");
-var Chitiethoadon_1 = require("./Chitiethoadon");
-//@Index("PK__CHITIETD__4B0B45DDE6AF50D4", ["maChiTietDonHang"], { unique: true })
+var MonanDonhang_1 = require("./MonanDonhang");
+// @Index("PK__CHITIETD__4B0B45DD0DD6F11D", ["maChiTietDonHang"], { unique: true })
 var Chitietdonhang = /** @class */ (function () {
     function Chitietdonhang() {
     }
@@ -35,15 +35,15 @@ var Chitietdonhang = /** @class */ (function () {
     ], Chitietdonhang.prototype, "trangThai");
     __decorate([
         typeorm_1.ManyToOne(function () { return Khachhang_1.Khachhang; }, function (khachhang) { return khachhang.chitietdonhangs; }),
-        typeorm_1.JoinColumn([{ name: "MaKhachHang", referencedColumnName: "maKhachHang" }])
-    ], Chitietdonhang.prototype, "maKhachHang");
+        typeorm_1.JoinColumn([{ name: "Email", referencedColumnName: "email" }])
+    ], Chitietdonhang.prototype, "email");
     __decorate([
         typeorm_1.ManyToOne(function () { return Danhsachdiachi_1.Danhsachdiachi; }, function (danhsachdiachi) { return danhsachdiachi.chitietdonhangs; }),
         typeorm_1.JoinColumn([{ name: "MaDiaChi", referencedColumnName: "maDiaChi" }])
     ], Chitietdonhang.prototype, "maDiaChi");
     __decorate([
-        typeorm_1.OneToMany(function () { return Chitiethoadon_1.Chitiethoadon; }, function (chitiethoadon) { return chitiethoadon.maChiTietDonHang; })
-    ], Chitietdonhang.prototype, "chitiethoadons");
+        typeorm_1.OneToMany(function () { return MonanDonhang_1.MonanDonhang; }, function (monanDonhang) { return monanDonhang.maChiTietDonHang2; })
+    ], Chitietdonhang.prototype, "monanDonhangs");
     Chitietdonhang = __decorate([
         typeorm_1.Entity("CHITIETDONHANG", { schema: "dbo" })
     ], Chitietdonhang);

@@ -20,15 +20,15 @@ export class AddressService {
   async create(createAddressDto: CreateAddressDto): Promise<Address> {  
     try {
       // Foreign key Khachhang: customer
-      const customerBody = createAddressDto.maKhachHang;
+      const customerBody = createAddressDto.email;
       const customer = await this.customerRepository.findOneBy({
-        maKhachHang: customerBody
+        email: customerBody
       });
 
       // create new product
       const newAddress = this.addressRepository.create();
       newAddress.maDiaChi = createAddressDto.maDiaChi;
-      newAddress.maKhachHang = customer;
+      newAddress.email = customer;
       newAddress.diaChi = createAddressDto.diaChi;
       newAddress.tenDiaChi = createAddressDto.tenDiaChi;
 

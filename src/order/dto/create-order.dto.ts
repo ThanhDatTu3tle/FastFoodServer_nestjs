@@ -4,7 +4,7 @@ export class CreateOrderDto {
   @ApiProperty()
   maChiTietDonHang: string;
   @ApiProperty()
-  maKhachHang: string;
+  email: string;
   @ApiProperty()
   maDiaChi: string;
   @ApiProperty()

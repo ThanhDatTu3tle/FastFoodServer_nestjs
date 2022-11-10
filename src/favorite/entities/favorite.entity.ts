@@ -6,5 +6,5 @@ export class Favorite {
   @ApiProperty()
   maMonAn: string;
   @ApiProperty()
-  maKhachHang: string;
+  email: string;
 }

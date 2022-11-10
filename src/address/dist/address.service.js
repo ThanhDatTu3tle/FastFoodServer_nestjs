@@ -64,15 +64,15 @@ var AddressService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
-                        customerBody = createAddressDto.maKhachHang;
+                        customerBody = createAddressDto.email;
                         return [4 /*yield*/, this.customerRepository.findOneBy({
-                                maKhachHang: customerBody
+                                email: customerBody
                             })];
                     case 1:
                         customer = _a.sent();
                         newAddress = this.addressRepository.create();
                         newAddress.maDiaChi = createAddressDto.maDiaChi;
-                        newAddress.maKhachHang = customer;
+                        newAddress.email = customer;
                         newAddress.diaChi = createAddressDto.diaChi;
                         newAddress.tenDiaChi = createAddressDto.tenDiaChi;
                         return [4 /*yield*/, this.addressRepository.save(newAddress)];

@@ -19,7 +19,7 @@ var Favorite = /** @class */ (function () {
     ], Favorite.prototype, "maMonAn");
     __decorate([
         swagger_1.ApiProperty()
-    ], Favorite.prototype, "maKhachHang");
+    ], Favorite.prototype, "email");
     return Favorite;
 }());
 exports.Favorite = Favorite;

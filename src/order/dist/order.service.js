@@ -66,9 +66,9 @@ var OrderService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 5, , 6]);
-                        customerBody = createOrderDto.maKhachHang;
+                        customerBody = createOrderDto.email;
                         return [4 /*yield*/, this.customerRepository.findOneByOrFail({
-                                maKhachHang: customerBody
+                                email: customerBody
                             })];
                     case 1:
                         customers = _a.sent();
@@ -80,7 +80,7 @@ var OrderService = /** @class */ (function () {
                         categories = _a.sent();
                         newOrder = this.orderRepository.create();
                         newOrder.maChiTietDonHang = createOrderDto.maChiTietDonHang;
-                        newOrder.maKhachHang = customers;
+                        newOrder.email = customers;
                         newOrder.maDiaChi = categories;
                         newOrder.gioDat = createOrderDto.gioDat;
                         newOrder.ngayDat = createOrderDto.ngayDat;

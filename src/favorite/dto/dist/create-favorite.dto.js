@@ -19,7 +19,7 @@ var CreateFavoriteDto = /** @class */ (function () {
     ], CreateFavoriteDto.prototype, "maMonAn");
     __decorate([
         swagger_1.ApiProperty()
-    ], CreateFavoriteDto.prototype, "maKhachHang");
+    ], CreateFavoriteDto.prototype, "email");
     return CreateFavoriteDto;
 }());
 exports.CreateFavoriteDto = CreateFavoriteDto;

@@ -13,16 +13,13 @@ var Customer = /** @class */ (function () {
     }
     __decorate([
         swagger_1.ApiProperty()
-    ], Customer.prototype, "maKhachHang");
+    ], Customer.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
     ], Customer.prototype, "hoTen");
     __decorate([
         swagger_1.ApiProperty()
     ], Customer.prototype, "soDienThoai");
-    __decorate([
-        swagger_1.ApiProperty()
-    ], Customer.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
     ], Customer.prototype, "matKhau");

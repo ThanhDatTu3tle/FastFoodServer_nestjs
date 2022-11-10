@@ -16,7 +16,7 @@ var CreateFeedbackDto = /** @class */ (function () {
     ], CreateFeedbackDto.prototype, "maYKien");
     __decorate([
         swagger_1.ApiProperty()
-    ], CreateFeedbackDto.prototype, "maKhachHang");
+    ], CreateFeedbackDto.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
     ], CreateFeedbackDto.prototype, "noiDung");

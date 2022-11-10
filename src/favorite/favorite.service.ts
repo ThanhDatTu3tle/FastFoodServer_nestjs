@@ -25,9 +25,9 @@ export class FavoriteService {
   async create(createFavoriteDto: CreateFavoriteDto): Promise<Favorite> {
     try {
       // Foreign key Khachhang: customer
-      const customerBody = createFavoriteDto.maKhachHang;
+      const customerBody = createFavoriteDto.email;
       const customers = await this.customerRepository.findOneByOrFail({
-        maKhachHang: customerBody
+        email: customerBody
       });
 
       // Foreign key Monan: product
@@ -40,7 +40,7 @@ export class FavoriteService {
       const newFavorite = this.favoriteRepository.create();
       newFavorite.maMonAnYeuThich = createFavoriteDto.maMonAnYeuThich;
       newFavorite.maMonAn = products;
-      newFavorite.maKhachHang = customers;
+      newFavorite.email = customers;
       
       await this.favoriteRepository.save(newFavorite);
       // console.log(this.productRepository)

@@ -1,7 +1,7 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import { Khachhang } from "./Khachhang";
 
-// @Index("PK__YKIENKHA__A84C6BFD2CCA21EB", ["maYKien"], { unique: true })
+// @Index("PK__YKIENKHA__A84C6BFD50AB3EA9", ["maYKien"], { unique: true })
 @Entity("YKIENKHACHHANG", { schema: "dbo" })
 export class Ykienkhachhang {
   @Column("nvarchar", { primary: true, name: "MaYKien", length: 10 })
@@ -14,6 +14,6 @@ export class Ykienkhachhang {
   danhGia: number;
 
   @ManyToOne(() => Khachhang, (khachhang) => khachhang.ykienkhachhangs)
-  @JoinColumn([{ name: "MaKhachHang", referencedColumnName: "maKhachHang" }])
-  maKhachHang: Khachhang;
+  @JoinColumn([{ name: "Email", referencedColumnName: "email" }])
+  email: Khachhang;
 }

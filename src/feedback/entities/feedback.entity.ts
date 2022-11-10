@@ -4,7 +4,7 @@ export class Feedback {
   @ApiProperty()
   maYKien: string;
   @ApiProperty()
-  maKhachHang: string;
+  email: string;
   @ApiProperty()
   noiDung: string;
   @ApiProperty()

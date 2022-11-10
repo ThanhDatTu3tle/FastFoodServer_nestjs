@@ -16,7 +16,7 @@ var CreateAddressDto = /** @class */ (function () {
     ], CreateAddressDto.prototype, "maDiaChi");
     __decorate([
         swagger_1.ApiProperty()
-    ], CreateAddressDto.prototype, "maKhachHang");
+    ], CreateAddressDto.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
     ], CreateAddressDto.prototype, "diaChi");

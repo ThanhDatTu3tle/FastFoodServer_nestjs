@@ -4,7 +4,7 @@ export class Address {
   @ApiProperty()
   maDiaChi: string;
   @ApiProperty()
-  maKhachHang: string;
+  email: string;
   @ApiProperty()
   diaChi: string;
   @ApiProperty()

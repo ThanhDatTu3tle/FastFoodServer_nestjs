@@ -25,9 +25,9 @@ export class OrderService {
   async create(createOrderDto: CreateOrderDto): Promise<Order> {  
     try {
       // Foreign key Khachhang: customer
-      const customerBody = createOrderDto.maKhachHang;
+      const customerBody = createOrderDto.email;
       const customers = await this.customerRepository.findOneByOrFail({
-        maKhachHang: customerBody
+        email: customerBody
       });
 
       // Foreign key Danhsachdiachi: address
@@ -39,7 +39,7 @@ export class OrderService {
       // create new order
       const newOrder = this.orderRepository.create();
       newOrder.maChiTietDonHang = createOrderDto.maChiTietDonHang;
-      newOrder.maKhachHang = customers;
+      newOrder.email = customers;
       newOrder.maDiaChi = categories;
       newOrder.gioDat = createOrderDto.gioDat;
       newOrder.ngayDat = createOrderDto.ngayDat;

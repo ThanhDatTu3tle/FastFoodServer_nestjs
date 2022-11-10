@@ -78,7 +78,7 @@ var CustomerController = /** @class */ (function () {
         common_1.Get()
     ], CustomerController.prototype, "getAll");
     CustomerController = __decorate([
-        swagger_1.ApiTags('customer'),
+        swagger_1.ApiTags('Customer'),
         common_1.Controller('customer')
     ], CustomerController);
     return CustomerController;

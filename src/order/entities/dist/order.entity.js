@@ -16,7 +16,7 @@ var Order = /** @class */ (function () {
     ], Order.prototype, "maChiTietDonHang");
     __decorate([
         swagger_1.ApiProperty()
-    ], Order.prototype, "maKhachHang");
+    ], Order.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
     ], Order.prototype, "maDiaChi");

@@ -16,7 +16,7 @@ var Address = /** @class */ (function () {
     ], Address.prototype, "maDiaChi");
     __decorate([
         swagger_1.ApiProperty()
-    ], Address.prototype, "maKhachHang");
+    ], Address.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
     ], Address.prototype, "diaChi");

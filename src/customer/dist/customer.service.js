@@ -56,17 +56,21 @@ var CustomerService = /** @class */ (function () {
     }
     CustomerService.prototype.create = function (createCustomerDto) {
         return __awaiter(this, void 0, void 0, function () {
-            var newCustomer;
+            var email, hoTen, soDienThoai, matKhau, newCustomer;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        email = localStorage.getItem('email');
+                        hoTen = localStorage.getItem('hoTen');
+                        soDienThoai = localStorage.getItem('soDienThoai');
+                        matKhau = localStorage.getItem('matKhau');
                         newCustomer = this.customerRepository.create();
-                        newCustomer.maKhachHang = createCustomerDto.maKhachHang;
-                        newCustomer.hoTen = createCustomerDto.hoTen;
-                        newCustomer.soDienThoai = createCustomerDto.soDienThoai;
-                        newCustomer.email = createCustomerDto.email;
-                        newCustomer.matKhau = createCustomerDto.matKhau;
-                        newCustomer.hinhAnh = createCustomerDto.hinhAnh;
+                        // newCustomer.maKhachHang = createCustomerDto.maKhachHang;
+                        newCustomer.email = email;
+                        newCustomer.hoTen = hoTen;
+                        newCustomer.soDienThoai = soDienThoai;
+                        newCustomer.matKhau = matKhau;
+                        newCustomer.hinhAnh = 'avatar';
                         return [4 /*yield*/, this.customerRepository.save(newCustomer)];
                     case 1:
                         _a.sent();

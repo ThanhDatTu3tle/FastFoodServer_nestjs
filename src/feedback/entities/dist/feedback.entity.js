@@ -16,7 +16,7 @@ var Feedback = /** @class */ (function () {
     ], Feedback.prototype, "maYKien");
     __decorate([
         swagger_1.ApiProperty()
-    ], Feedback.prototype, "maKhachHang");
+    ], Feedback.prototype, "email");
     __decorate([
         swagger_1.ApiProperty()
     ], Feedback.prototype, "noiDung");
