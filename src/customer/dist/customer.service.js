@@ -48,7 +48,6 @@ exports.__esModule = true;
 exports.CustomerService = void 0;
 var common_1 = require("@nestjs/common");
 var typeorm_1 = require("@nestjs/typeorm");
-// import { UpdateCustomerDto } from './dto/update-customer.dto';
 var Khachhang_1 = require("output/entities/Khachhang");
 var CustomerService = /** @class */ (function () {
     function CustomerService(customerRepository) {
@@ -56,20 +55,16 @@ var CustomerService = /** @class */ (function () {
     }
     CustomerService.prototype.create = function (createCustomerDto) {
         return __awaiter(this, void 0, void 0, function () {
-            var email, hoTen, soDienThoai, matKhau, newCustomer;
+            var newCustomer;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        email = localStorage.getItem('email');
-                        hoTen = localStorage.getItem('hoTen');
-                        soDienThoai = localStorage.getItem('soDienThoai');
-                        matKhau = localStorage.getItem('matKhau');
                         newCustomer = this.customerRepository.create();
                         // newCustomer.maKhachHang = createCustomerDto.maKhachHang;
-                        newCustomer.email = email;
-                        newCustomer.hoTen = hoTen;
-                        newCustomer.soDienThoai = soDienThoai;
-                        newCustomer.matKhau = matKhau;
+                        newCustomer.email = createCustomerDto.email;
+                        newCustomer.hoTen = createCustomerDto.hoTen;
+                        newCustomer.soDienThoai = createCustomerDto.soDienThoai;
+                        newCustomer.matKhau = createCustomerDto.matKhau;
                         newCustomer.hinhAnh = 'avatar';
                         return [4 /*yield*/, this.customerRepository.save(newCustomer)];
                     case 1:

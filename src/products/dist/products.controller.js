@@ -88,6 +88,34 @@ var ProductsController = /** @class */ (function () {
             });
         });
     };
+    ProductsController.prototype.update = function (maMonAn, updateProductDto, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var updateCategory, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!updateProductDto) {
+                            res
+                                .status(400)
+                                .json({ success: false, message: 'Gãy!!!' });
+                        }
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.productsService.update(maMonAn, updateProductDto)];
+                    case 2:
+                        updateCategory = _a.sent();
+                        res.status(200).json({ success: true, body: updateCategory });
+                        return [3 /*break*/, 4];
+                    case 3:
+                        err_2 = _a.sent();
+                        res.status(400).json({ success: false, message: err_2 });
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     __decorate([
         common_1.Post(),
         swagger_1.ApiCreatedResponse({ type: product_entity_1.Product }),
@@ -102,6 +130,12 @@ var ProductsController = /** @class */ (function () {
         common_1.Get(':maDanhMuc'),
         __param(0, common_1.Param('maDanhMuc'))
     ], ProductsController.prototype, "findCategory");
+    __decorate([
+        common_1.Patch(':maMonAn'),
+        __param(0, common_1.Param('maMonAn')),
+        __param(1, common_1.Body()),
+        __param(2, common_1.Res())
+    ], ProductsController.prototype, "update");
     ProductsController = __decorate([
         swagger_1.ApiTags('Products'),
         common_1.Controller('products')

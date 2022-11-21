@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { ConsoleLogger, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
-// import { UpdateProductDto } from './dto/update-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductRelations as relations } from 'src/relations/relations';
 import { Monan as Product } from '../../output/entities/Monan';
 import { Danhmuc as Category } from '../../output/entities/Danhmuc';
@@ -38,7 +38,6 @@ export class ProductsService {
       newProduct.yeuThich = createProductDto.yeuThich;
 
       await this.productRepository.save(newProduct);
-      // console.log(this.productRepository)
 
       const findAndReturn = await this.productRepository.findOneOrFail({
         relations,
@@ -59,11 +58,7 @@ export class ProductsService {
     return getAll;
   }
 
-  // findAll() {
-  //   return `This action returns all products`;
-  // }
-
-  async findCategory(maDanhMuc: string): Promise<Product[]> {
+  async findCategory(maDanhMuc: string) {
     const category = await this.productRepository.find({ 
       relations,
     })
@@ -83,9 +78,6 @@ export class ProductsService {
       // ...
     }
 
-    // console.log('arrChicken: ', arrChicken.length);
-    // console.log('arrHamburger: ', arrHamburger.length);
-
     const start = 0;
     const end_start = arrChicken.length;
 
@@ -99,13 +91,40 @@ export class ProductsService {
     // ...
   }
 
-  // }
+  async update(
+    maMonAn: string,
+    updateProductDto: UpdateProductDto,
+  ): Promise<Product> {
+    try {
+      const updateProduct = await this.productRepository.findOneByOrFail({ maMonAn })
 
-  // update(id: number, updateProductDto: UpdateProductDto) {
-  //   return `This action updates a #${id} product`;
-  // }
+      await this.productRepository.save({
+        ...updateProduct,
+        tenMonAn: updateProductDto.tenMonAn,
+        hinhAnhMonAn: updateProductDto.hinhAnhMonAn,
+        giaTien: updateProductDto.giaTien,
+      });
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} product`;
-  // }
+      const findAndReturn = await this.productRepository.findOneOrFail({
+        relations,
+        where: { maMonAn: updateProduct.maMonAn },
+      });
+
+      return findAndReturn;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async remove(maMonAn: string) {
+    try {
+      //Delete apartment
+      const findOne = await this.productRepository.findOneOrFail({
+        where: { maMonAn },
+      });
+      return await this.productRepository.remove(findOne);
+    } catch (err) {
+      throw err;
+    }
+  }
 }

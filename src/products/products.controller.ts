@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Patch, Param, Delete, Res } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Product } from './entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
-// import { UpdateProductDto } from './dto/update-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 import { Response } from 'express';
 import { ApiTags, ApiQuery, ApiCreatedResponse, ApiBadRequestResponse } from '@nestjs/swagger';
 
@@ -38,13 +38,38 @@ export class ProductsController {
     return this.productsService.findCategory(maDanhMuc);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-  //   return this.productsService.update(+id, updateProductDto);
-  // }
+  @Patch(':maMonAn')
+  async update(
+    @Param('maMonAn') maMonAn: string, 
+    @Body() updateProductDto: UpdateProductDto,
+    @Res() res: Response,
+  ) {
+    if (!updateProductDto) {
+      res
+        .status(400)
+        .json({ success: false, message: 'Gãy!!!' });
+    }
+    try {
+      const updateCategory = await this.productsService.update(
+        maMonAn, 
+        updateProductDto,
+      );
+      res.status(200).json({ success: true, body: updateCategory });
+    } catch (err) {
+      res.status(400).json({ success: false, message: err });
+    }
+  }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.productsService.remove(+id);
-  // }
+  @Delete(':maMonAn')
+  async remove(@Param('maMonAn') maDanhMuc: string, @Res() res: Response,) {
+    if (!maDanhMuc) {
+      res.status(404).json({ success: false, message: 'Gãy!!!' });
+    }
+    try {
+      const deleteProduct = await this.productsService.remove(maDanhMuc);
+      res.status(200).json({ success: true, body: deleteProduct });
+    } catch (err) {
+      res.status(400).json({ success: false, message: err });
+    }
+  }
 }

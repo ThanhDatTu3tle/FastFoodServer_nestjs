@@ -48,7 +48,6 @@ exports.__esModule = true;
 exports.CategoryController = void 0;
 var common_1 = require("@nestjs/common");
 var category_entity_1 = require("./entities/category.entity");
-// import { UpdateCategoryDto } from './dto/update-category.dto';
 var swagger_1 = require("@nestjs/swagger");
 var CategoryController = /** @class */ (function () {
     function CategoryController(categoryService) {
@@ -71,6 +70,34 @@ var CategoryController = /** @class */ (function () {
     CategoryController.prototype.findOne = function (maDanhMuc) {
         return this.categoryService.findOne(maDanhMuc);
     };
+    CategoryController.prototype.update = function (maDanhMuc, updateCategoryDto, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var updateCategory, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!updateCategoryDto) {
+                            res
+                                .status(400)
+                                .json({ success: false, message: 'Gãy!!!' });
+                        }
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.categoryService.update(maDanhMuc, updateCategoryDto)];
+                    case 2:
+                        updateCategory = _a.sent();
+                        res.status(200).json({ success: true, body: updateCategory });
+                        return [3 /*break*/, 4];
+                    case 3:
+                        err_1 = _a.sent();
+                        res.status(400).json({ success: false, message: err_1 });
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     __decorate([
         common_1.Post(),
         swagger_1.ApiCreatedResponse({ type: category_entity_1.Category }),
@@ -84,6 +111,12 @@ var CategoryController = /** @class */ (function () {
         common_1.Get(':maDanhMuc'),
         __param(0, common_1.Param('maDanhMuc'))
     ], CategoryController.prototype, "findOne");
+    __decorate([
+        common_1.Put(':maDanhMuc'),
+        __param(0, common_1.Param('maDanhMuc')),
+        __param(1, common_1.Body()),
+        __param(2, common_1.Res())
+    ], CategoryController.prototype, "update");
     CategoryController = __decorate([
         swagger_1.ApiTags('category'),
         common_1.Controller('category')

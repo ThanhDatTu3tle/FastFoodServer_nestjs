@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -48,7 +59,6 @@ exports.__esModule = true;
 exports.ProductsService = void 0;
 var common_1 = require("@nestjs/common");
 var typeorm_1 = require("@nestjs/typeorm");
-// import { UpdateProductDto } from './dto/update-product.dto';
 var relations_1 = require("src/relations/relations");
 var Monan_1 = require("../../output/entities/Monan");
 var Danhmuc_1 = require("../../output/entities/Danhmuc");
@@ -112,11 +122,8 @@ var ProductsService = /** @class */ (function () {
             });
         });
     };
-    // findAll() {
-    //   return `This action returns all products`;
-    // }
     ProductsService.prototype.findCategory = function (maDanhMuc) {
-        return __awaiter(this, void 0, Promise, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var category, product, arrChicken, arrHamburger, arrRicepasta, i, start, end_start;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -155,6 +162,42 @@ var ProductsService = /** @class */ (function () {
                             return [2 /*return*/, category.slice(end_start + arrHamburger.length, end_start + arrHamburger.length + arrRicepasta.length)];
                         }
                         return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ProductsService.prototype.update = function (maMonAn, updateProductDto) {
+        return __awaiter(this, void 0, Promise, function () {
+            var updateProduct, result, findAndReturn, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 4, , 5]);
+                        return [4 /*yield*/, this.productRepository.findOneByOrFail({ maMonAn: maMonAn })];
+                    case 1:
+                        updateProduct = _a.sent();
+                        // Foreign key Danhmuc: categories
+                        // const getCategoriesBody = updateProductDto.maDanhMuc;
+                        // const findCategories = await this.categoriesRepository.findOneByOrFail({
+                        //   maDanhMuc: getCategoriesBody,
+                        // });
+                        // updateProduct.maDanhMuc = findCategories
+                        console.log(updateProduct.maMonAn);
+                        console.log(typeof updateProduct);
+                        return [4 /*yield*/, this.productRepository.save(__assign({}, updateProduct))];
+                    case 2:
+                        result = _a.sent();
+                        return [4 /*yield*/, this.productRepository.findOneOrFail({
+                                relations: relations_1.ProductRelations,
+                                where: { maMonAn: updateProduct.maMonAn }
+                            })];
+                    case 3:
+                        findAndReturn = _a.sent();
+                        return [2 /*return*/, findAndReturn];
+                    case 4:
+                        err_2 = _a.sent();
+                        throw err_2;
+                    case 5: return [2 /*return*/];
                 }
             });
         });

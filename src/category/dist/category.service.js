@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -48,7 +59,6 @@ exports.__esModule = true;
 exports.CategoryService = void 0;
 var common_1 = require("@nestjs/common");
 var typeorm_1 = require("@nestjs/typeorm");
-// import { UpdateCategoryDto } from './dto/update-category.dto';
 // import { ProductRelations as relations } from 'src/relations/relations';
 var Monan_1 = require("../../output/entities/Monan");
 var Danhmuc_1 = require("../../output/entities/Danhmuc");
@@ -82,13 +92,31 @@ var CategoryService = /** @class */ (function () {
             });
         });
     };
-    // findAll() {
-    //   return `This action returns all categories`;
-    // }
     CategoryService.prototype.findOne = function (maDanhMuc) {
         var category = this.categoryRepository.findOneBy({ maDanhMuc: maDanhMuc });
         // console.log(category)
         return category;
+    };
+    CategoryService.prototype.update = function (maDanhMuc, updateCategoryDto) {
+        return __awaiter(this, void 0, void 0, function () {
+            var updateCategory, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, this.categoryRepository.findOneByOrFail({ maDanhMuc: maDanhMuc })];
+                    case 1:
+                        updateCategory = _a.sent();
+                        console.log(updateCategory);
+                        return [4 /*yield*/, this.categoryRepository.save(__assign({}, updateCategory))];
+                    case 2: return [2 /*return*/, _a.sent()];
+                    case 3:
+                        err_1 = _a.sent();
+                        throw err_1;
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
     };
     CategoryService = __decorate([
         common_1.Injectable(),

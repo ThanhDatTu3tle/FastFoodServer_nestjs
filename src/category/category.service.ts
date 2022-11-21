@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateCategoryDto } from './dto/create-category.dto';
-// import { UpdateCategoryDto } from './dto/update-category.dto';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 // import { ProductRelations as relations } from 'src/relations/relations';
 import { Monan as Product } from '../../output/entities/Monan';
 import { Danhmuc as Category } from '../../output/entities/Danhmuc';
@@ -33,10 +33,6 @@ export class CategoryService {
     return this.categoryRepository.find();
   }
 
-  // findAll() {
-  //   return `This action returns all categories`;
-  // }
-
   findOne(maDanhMuc: string): Promise<Category> {
     const category =  this.categoryRepository.findOneBy({ maDanhMuc: maDanhMuc });
 
@@ -45,11 +41,28 @@ export class CategoryService {
     return category;
   }
 
-  // update(id: number, updateCategoryDto: UpdateCategoryDto) {
-  //   return `This action updates a #${id} category`;
-  // }
+  async update(maDanhMuc: string, updateCategoryDto: UpdateCategoryDto) {
+    try {
+      const updateCategory = await this.categoryRepository.findOneByOrFail({ maDanhMuc });
+      console.log(updateCategory)
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} category`;
-  // }
+      return await this.categoryRepository.save({
+        ...updateCategory,
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async remove(maDanhMuc: string) {
+    try {
+      //Delete apartment
+      const findOne = await this.categoryRepository.findOneOrFail({
+        where: { maDanhMuc },
+      });
+      return await this.categoryRepository.remove(findOne);
+    } catch (err) {
+      throw err;
+    }
+  }
 }

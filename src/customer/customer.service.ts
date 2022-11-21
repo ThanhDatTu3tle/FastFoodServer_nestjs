@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-// import { UpdateCustomerDto } from './dto/update-customer.dto';
+import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { Khachhang as Customer } from 'output/entities/Khachhang';
 import { Repository, getManager } from 'typeorm';
 
@@ -11,24 +11,17 @@ export class CustomerService {
   constructor(
     @InjectRepository(Customer)
     private customerRepository: Repository<Customer>,
-
-    // @InjectRepository(Category)
-    // private categoryRepository: Repository<Category>
   ) {}
 
   async create(createCustomerDto: CreateCustomerDto) {
-    const email = localStorage.getItem('email')
-    const hoTen = localStorage.getItem('hoTen')
-    const soDienThoai = localStorage.getItem('soDienThoai')
-    const matKhau = localStorage.getItem('matKhau')
 
     // create new categories
     const newCustomer = this.customerRepository.create();
     // newCustomer.maKhachHang = createCustomerDto.maKhachHang;
-    newCustomer.email = email;
-    newCustomer.hoTen = hoTen;
-    newCustomer.soDienThoai = soDienThoai;
-    newCustomer.matKhau = matKhau;
+    newCustomer.email = createCustomerDto.email;
+    newCustomer.hoTen = createCustomerDto.hoTen;
+    newCustomer.soDienThoai = createCustomerDto.soDienThoai;
+    newCustomer.matKhau = createCustomerDto.matKhau;
     newCustomer.hinhAnh = 'avatar';
 
     await this.customerRepository.save(newCustomer);

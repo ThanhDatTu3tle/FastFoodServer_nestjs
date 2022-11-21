@@ -10,13 +10,12 @@ import { AddressModule } from './address/address.module';
 import { FeedbackModule } from './feedback/feedback.module';
 import { OrderModule } from './order/order.module';
 import { FavoriteModule } from './favorite/favorite.module';
-import { CustomerTestModule } from './customer-test/customer-test.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({ ...config, autoLoadEntities: true }), 
     ProductsModule, 
-    CategoryModule, CustomerModule, AddressModule, FeedbackModule, OrderModule, FavoriteModule, CustomerTestModule,
+    CategoryModule, CustomerModule, AddressModule, FeedbackModule, OrderModule, FavoriteModule,
   ],
   controllers: [AppController],
   providers: [AppService],
