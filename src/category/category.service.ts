@@ -33,7 +33,7 @@ export class CategoryService {
     return this.categoryRepository.find();
   }
 
-  findOne(maDanhMuc: string): Promise<Category> {
+  async findOne(maDanhMuc: string): Promise<Category> {
     const category =  this.categoryRepository.findOneBy({ maDanhMuc: maDanhMuc });
 
     // console.log(category)

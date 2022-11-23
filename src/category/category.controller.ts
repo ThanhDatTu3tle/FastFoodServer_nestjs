@@ -24,7 +24,7 @@ export class CategoryController {
   }
 
   @Get(':maDanhMuc')
-  findOne(@Param('maDanhMuc') maDanhMuc: string) {
+  async findOne(@Param('maDanhMuc') maDanhMuc: string) {
     return this.categoryService.findOne(maDanhMuc);
   }
 

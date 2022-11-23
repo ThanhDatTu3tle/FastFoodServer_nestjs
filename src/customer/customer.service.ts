@@ -31,19 +31,36 @@ export class CustomerService {
     return this.customerRepository.find();
   }
 
-  // findAll() {
-  //   return `This action returns all categories`;
-  // }
+  async findOne(email: string) {
+    const category =  this.customerRepository.findOneBy({ email: email });
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} category`;
-  // }
+    // console.log(category)
 
-  // update(id: number, updateCategoryDto: UpdateCategoryDto) {
-  //   return `This action updates a #${id} category`;
-  // }
+    return category;
+  }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} category`;
-  // }
+  async update(email: string, updateCustomerDto: UpdateCustomerDto) {
+    try {
+      const updateCustomer = await this.customerRepository.findOneByOrFail({ email });
+      console.log(updateCustomer)
+
+      return await this.customerRepository.save({
+        ...updateCustomer,
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async remove(email: string) {
+    try {
+      //Delete apartment
+      const findOne = await this.customerRepository.findOneOrFail({
+        where: { email },
+      });
+      return await this.customerRepository.remove(findOne);
+    } catch (err) {
+      throw err;
+    }
+  }
 }
