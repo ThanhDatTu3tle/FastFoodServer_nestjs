@@ -17,7 +17,6 @@ export class CustomerService {
 
     // create new categories
     const newCustomer = this.customerRepository.create();
-    // newCustomer.maKhachHang = createCustomerDto.maKhachHang;
     newCustomer.email = createCustomerDto.email;
     newCustomer.hoTen = createCustomerDto.hoTen;
     newCustomer.soDienThoai = createCustomerDto.soDienThoai;

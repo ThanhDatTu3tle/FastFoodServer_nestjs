@@ -3,20 +3,20 @@ const ProductRelations = [
 ];
 
 const FeedbackRelations = [
-  'maKhachHang',
+  'email',
 ]
 
 const AddressRelations = [
-  'maKhachHang',
+  'email',
 ]
 
 const OrderRelations = [
-  'maKhachHang',
+  'email',
   'maDiaChi',
 ]
 
 const FavoriteRelations = [
-  'maKhachHang',
+  'email',
   'maMonAn',
 ]
 

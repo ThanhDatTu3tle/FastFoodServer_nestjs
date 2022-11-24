@@ -6,7 +6,6 @@ import { ProductRelations as relations } from 'src/relations/relations';
 import { Monan as Product } from '../../output/entities/Monan';
 import { Danhmuc as Category } from '../../output/entities/Danhmuc';
 import { Repository, getManager } from 'typeorm';
-// import { markAsUntransferable } from 'worker_threads';
 
 @Injectable()
 export class ProductsService {
@@ -67,6 +66,8 @@ export class ProductsService {
     const arrChicken = [];
     const arrHamburger = [];
     const arrRicepasta = [];
+    const arrDessert = [];
+    const arrDrink = [];
     for (let i = 0; i < product.length; i++) {
       if (product[i].maMonAn.charAt(5) === '0') {
         arrChicken.push(product[i])
@@ -74,8 +75,11 @@ export class ProductsService {
         arrHamburger.push(product[i])
       } else if (product[i].maMonAn.charAt(5) === '2') {
         arrRicepasta.push(product[i])
+      } else if (product[i].maMonAn.charAt(5) === '3') {
+        arrDessert.push(product[i])
+      } else if (product[i].maMonAn.charAt(5) === '4') {
+        arrDrink.push(product[i])
       }
-      // ...
     }
 
     const start = 0;
@@ -87,8 +91,11 @@ export class ProductsService {
       return category.slice(end_start, end_start + arrHamburger.length); 
     } else if (maDanhMuc === 'MDM03') {
       return category.slice(end_start + arrHamburger.length, end_start + arrHamburger.length + arrRicepasta.length); 
+    } else if (maDanhMuc === 'MDM04') {
+      return category.slice(end_start + arrHamburger.length + arrRicepasta.length, end_start + arrHamburger.length + arrRicepasta.length + arrDessert.length); 
+    } else if (maDanhMuc === 'MDM05') {
+      return category.slice(end_start + arrHamburger.length + arrRicepasta.length + arrDessert.length, end_start + arrHamburger.length + arrRicepasta.length + arrDessert.length + arrDrink.length); 
     } 
-    // ...
   }
 
   async update(
@@ -118,7 +125,6 @@ export class ProductsService {
 
   async remove(maMonAn: string) {
     try {
-      //Delete apartment
       const findOne = await this.productRepository.findOneOrFail({
         where: { maMonAn },
       });

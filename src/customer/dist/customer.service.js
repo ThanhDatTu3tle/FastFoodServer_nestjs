@@ -60,7 +60,6 @@ var CustomerService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         newCustomer = this.customerRepository.create();
-                        // newCustomer.maKhachHang = createCustomerDto.maKhachHang;
                         newCustomer.email = createCustomerDto.email;
                         newCustomer.hoTen = createCustomerDto.hoTen;
                         newCustomer.soDienThoai = createCustomerDto.soDienThoai;
