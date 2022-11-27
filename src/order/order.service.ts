@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateOrderDto } from './dto/create-order.dto';
-// import { UpdateOrderDto } from './dto/update-order.dto';
+import { UpdateOrderDto } from './dto/update-order.dto';
 import { OrderRelations as relations } from 'src/relations/relations';
 import { Chitietdonhang as Order } from '../../output/entities/Chitietdonhang';
 import { Khachhang as Customer } from '../../output/entities/Khachhang';
@@ -39,8 +39,8 @@ export class OrderService {
       // create new order
       const newOrder = this.orderRepository.create();
       newOrder.maChiTietDonHang = createOrderDto.maChiTietDonHang;
-      newOrder.email = customers;
-      newOrder.maDiaChi = categories;
+      newOrder.email = customers; //*** */
+      newOrder.maDiaChi = categories; //*** */
       newOrder.gioDat = createOrderDto.gioDat;
       newOrder.ngayDat = createOrderDto.ngayDat;
       newOrder.thanhTien = createOrderDto.thanhTien;
@@ -71,15 +71,49 @@ export class OrderService {
     return getAll;
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} order`;
-  // }
+  async findCustomerAndAddress(email: string, maDiaChi: string) {
+    const customerAddress = await this.orderRepository.find({ 
+      relations,
+    })
+    const order = await this.orderRepository.find();
 
-  // update(id: number, updateOrderDto: UpdateOrderDto) {
-  //   return `This action updates a #${id} order`;
-  // }
+    return customerAddress;
+  }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} order`;
-  // }
+  async update(maChiTietDonHang, updateOrderDto: UpdateOrderDto): Promise<Order> {
+    try {
+      const updateOrder = await this.orderRepository.findOneByOrFail({ maChiTietDonHang })
+
+      await this.orderRepository.save({
+        ...updateOrder,
+        gioDat: updateOrderDto.gioDat,
+        ngayDat: updateOrderDto.ngayDat,
+        thanhTien: updateOrderDto.thanhTien,
+        maGiamGia: updateOrderDto.maGiamGia,
+        trangThai: updateOrderDto.trangThai,
+      });
+
+      const findAndReturn = await this.orderRepository.findOneOrFail({
+        relations,
+        where: { 
+          maChiTietDonHang: updateOrder.maChiTietDonHang,
+        },
+      });
+
+      return findAndReturn;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async remove(maChiTietDonHang: string) {
+    try {
+      const findOne = await this.orderRepository.findOneOrFail({
+        where: { maChiTietDonHang },
+      });
+      return await this.orderRepository.remove(findOne);
+    } catch (err) {
+      throw err;
+    }
+  }
 }

@@ -62,8 +62,8 @@ export class FeedbackController {
       res.status(404).json({ success: false, message: 'Gãy!!!' });
     }
     try {
-      const deleteAddress = await this.feedbackService.remove(maYKien);
-      res.status(200).json({ success: true, body: deleteAddress });
+      const deleteFeedback = await this.feedbackService.remove(maYKien);
+      res.status(200).json({ success: true, body: deleteFeedback });
     } catch (err) {
       res.status(400).json({ success: false, message: err });
     }
