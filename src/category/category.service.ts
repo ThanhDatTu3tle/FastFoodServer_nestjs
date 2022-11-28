@@ -2,8 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-// import { ProductRelations as relations } from 'src/relations/relations';
-import { Monan as Product } from '../../output/entities/Monan';
 import { Danhmuc as Category } from '../../output/entities/Danhmuc';
 import { Repository, getManager } from 'typeorm';
 
@@ -11,11 +9,8 @@ import { Repository, getManager } from 'typeorm';
 export class CategoryService {
 
   constructor(
-    @InjectRepository(Product)
-    private productRepository: Repository<Product>,
-
     @InjectRepository(Category)
-    private categoryRepository: Repository<Category>
+    private categoryRepository: Repository<Category>,
   ) {}
 
   async create(createCategoryDto: CreateCategoryDto) {
@@ -36,15 +31,12 @@ export class CategoryService {
   async findOne(maDanhMuc: string): Promise<Category> {
     const category =  this.categoryRepository.findOneBy({ maDanhMuc: maDanhMuc });
 
-    // console.log(category)
-
     return category;
   }
 
   async update(maDanhMuc: string, updateCategoryDto: UpdateCategoryDto) {
     try {
       const updateCategory = await this.categoryRepository.findOneByOrFail({ maDanhMuc });
-      console.log(updateCategory)
 
       return await this.categoryRepository.save({
         ...updateCategory,
@@ -56,7 +48,6 @@ export class CategoryService {
 
   async remove(maDanhMuc: string) {
     try {
-      //Delete apartment
       const findOne = await this.categoryRepository.findOneOrFail({
         where: { maDanhMuc },
       });

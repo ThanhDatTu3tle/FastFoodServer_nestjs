@@ -80,7 +80,7 @@ export class OrderService {
     return customerAddress;
   }
 
-  async update(maChiTietDonHang, updateOrderDto: UpdateOrderDto): Promise<Order> {
+  async update(maChiTietDonHang: string, updateOrderDto: UpdateOrderDto): Promise<Order> {
     try {
       const updateOrder = await this.orderRepository.findOneByOrFail({ maChiTietDonHang })
 

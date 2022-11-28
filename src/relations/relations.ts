@@ -20,10 +20,22 @@ const FavoriteRelations = [
   'maMonAn',
 ]
 
+const FormulaRelations = [
+  'maMonAn',
+  'maNguyenLieu',
+]
+
+const BillRelations = [
+  'maMonAn',
+  'maChiTietDonHang',
+]
+
 export {
   ProductRelations,
   FeedbackRelations,
   AddressRelations,
   OrderRelations,
   FavoriteRelations,
+  FormulaRelations,
+  BillRelations,
 };

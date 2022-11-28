@@ -16,6 +16,9 @@ export class MonanNguyenlieu {
   @Column("int", { name: "SoLuong" })
   soLuong: number;
 
+  @Column("nvarchar", { name: "donVi", length: 50 })
+  donVi: string;
+
   @ManyToOne(() => Nguyenlieu, (nguyenlieu) => nguyenlieu.monanNguyenlieus)
   @JoinColumn([{ name: "MaNguyenLieu", referencedColumnName: "maNguyenLieu" }])
   maNguyenLieu2: Nguyenlieu;

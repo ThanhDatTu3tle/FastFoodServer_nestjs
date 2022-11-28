@@ -13,6 +13,9 @@ export class Nguyenlieu {
   @Column("int", { name: "SoLuong" })
   soLuong: number;
 
+  @Column("nvarchar", { name: "donVi", length: 50 })
+  donVi: string;
+
   @OneToMany(
     () => MonanNguyenlieu,
     (monanNguyenlieu) => monanNguyenlieu.maNguyenLieu2
