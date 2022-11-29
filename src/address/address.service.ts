@@ -58,8 +58,18 @@ export class AddressService {
       relations,
     })
     const address = await this.addressRepository.find();
+    const customerAddress = [];
 
-    return customer;
+    for (let i = 0; i < customer.length; i++) {
+
+      const emailCustomer = customer[i].email.email;
+
+      if (emailCustomer === email) {
+        customerAddress.push(customer[i])
+      }
+    }
+
+    return customerAddress;
   }
 
   async update(maDiaChi: string, updateAddressDto: UpdateAddressDto): Promise<Address> {

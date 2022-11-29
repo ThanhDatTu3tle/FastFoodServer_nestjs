@@ -31,11 +31,9 @@ export class CustomerService {
   }
 
   async findOne(email: string) {
-    const category =  this.customerRepository.findOneBy({ email: email });
+    const customer =  this.customerRepository.findOneBy({ email: email });
 
-    // console.log(category)
-
-    return category;
+    return customer;
   }
 
   async update(email: string, updateCustomerDto: UpdateCustomerDto) {
