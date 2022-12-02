@@ -34,6 +34,13 @@ export class FavoriteController {
     return this.favoriteService.getAll();
   }
 
+  @Get(':email')
+  async findCustomer(
+    @Param('email') email: string,
+  ) {
+    return this.favoriteService.findCustomer(email);
+  }
+
   @Get(':email/:maMonAn')
   async findCustomerAndProduct(
     @Param('email') email: string,

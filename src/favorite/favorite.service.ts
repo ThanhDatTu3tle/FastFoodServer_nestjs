@@ -65,6 +65,15 @@ export class FavoriteService {
     return getAll;
   }
 
+  async findCustomer(email: string) {
+    const customer = await this.favoriteRepository.find({ 
+      relations,
+    })
+    const favorite = await this.favoriteRepository.find();
+
+    return customer;
+  }
+
   async findCustomerAndProduct(email: string, maMonAn: string) {
     const customerProduct = await this.favoriteRepository.find({ 
       relations,
