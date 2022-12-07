@@ -33,6 +33,13 @@ export class OrderController {
     return this.orderService.getAll();
   }
 
+  @Get(':email')
+  async findCustomer(
+    @Param('email') email: string,
+  ) {
+    return this.orderService.findCustomer(email);
+  }
+
   @Get(':email/:maDiaChi')
   async findCustomerAndAddress(
     @Param('email') email: string,

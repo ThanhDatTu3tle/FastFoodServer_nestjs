@@ -71,6 +71,15 @@ export class OrderService {
     return getAll;
   }
 
+  async findCustomer(email: string) {
+    const customer = await this.orderRepository.find({ 
+      relations,
+    })
+    const order = await this.orderRepository.find();
+
+    return customer;
+  }
+
   async findCustomerAndAddress(email: string, maDiaChi: string) {
     const customerAddress = await this.orderRepository.find({ 
       relations,

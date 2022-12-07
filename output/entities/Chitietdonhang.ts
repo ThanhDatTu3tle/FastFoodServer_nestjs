@@ -16,11 +16,11 @@ export class Chitietdonhang {
   @Column("nvarchar", { primary: true, name: "MaChiTietDonHang", length: 10 })
   maChiTietDonHang: string;
 
-  @Column("time", { name: "GioDat" })
-  gioDat: Date;
+  @Column("nvarchar", { name: "GioDat", length: 8 })
+  gioDat: string;
 
-  @Column("smalldatetime", { name: "NgayDat" })
-  ngayDat: Date;
+  @Column("nvarchar", { name: "NgayDat", length: 10 })
+  ngayDat: string;
 
   @Column("float", { name: "ThanhTien", precision: 53 })
   thanhTien: number;

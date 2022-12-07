@@ -8,9 +8,9 @@ export class CreateOrderDto {
   @ApiProperty()
   maDiaChi: string;
   @ApiProperty()
-  gioDat: Date;
+  gioDat: string;
   @ApiProperty()
-  ngayDat: Date;
+  ngayDat: string;
   @ApiProperty()
   thanhTien: number;
   @ApiProperty()
