@@ -71,22 +71,31 @@ export class OrderService {
     return getAll;
   }
 
-  async findCustomer(email: string) {
-    const customer = await this.orderRepository.find({ 
+  async findOne(maChiTietDonHang: string) {
+    const findOne = await this.orderRepository.find({ 
       relations,
     })
     const order = await this.orderRepository.find();
 
-    return customer;
+    return findOne;
+  }
+
+  async findCustomer(email: string) {
+    const findCustomer = await this.orderRepository.find({ 
+      relations,
+    })
+    const order = await this.orderRepository.find();
+
+    return findCustomer;
   }
 
   async findCustomerAndAddress(email: string, maDiaChi: string) {
-    const customerAddress = await this.orderRepository.find({ 
+    const findCustomerAndAddress = await this.orderRepository.find({ 
       relations,
     })
     const order = await this.orderRepository.find();
 
-    return customerAddress;
+    return findCustomerAndAddress;
   }
 
   async update(maChiTietDonHang: string, updateOrderDto: UpdateOrderDto): Promise<Order> {

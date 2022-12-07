@@ -33,6 +33,13 @@ export class OrderController {
     return this.orderService.getAll();
   }
 
+  @Get(':maChiTietDonHang')
+  async findOne(
+    @Param('maChiTietDonHang') maChiTietDonHang: string,
+  ) {
+    return this.orderService.findOne(maChiTietDonHang);
+  }
+
   @Get(':email')
   async findCustomer(
     @Param('email') email: string,
