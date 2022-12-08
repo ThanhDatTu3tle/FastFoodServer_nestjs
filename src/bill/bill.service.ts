@@ -37,9 +37,9 @@ export class BillService {
       });
 
       // create new order
-      const newBill = this.billRepository.create();
-      newBill.maMonAn2 = products; //*** */
-      newBill.maChiTietDonHang2 = orders; //*** */
+      const newBill = this.billRepository.create(createBillDto);
+      newBill.maMonAn = ''; //*** */
+      newBill.maChiTietDonHang = ''; //*** */
       newBill.soLuong = createBillDto.soLuong;
       newBill.thanhTien = createBillDto.thanhTien;
 
@@ -77,41 +77,41 @@ export class BillService {
     return productOrder;
   }
 
-  async update(maMonAn: string, maChiTietDonHang: string, updateBillDto: UpdateBillDto): Promise<Bill> {
-    try {
-      const updateBill = await this.billRepository.findOneByOrFail({ maMonAn, maChiTietDonHang })
+  // async update(maMonAn: string, maChiTietDonHang: string, updateBillDto: UpdateBillDto): Promise<Bill> {
+  //   try {
+  //     const updateBill = await this.billRepository.findOneByOrFail({ maMonAn, maChiTietDonHang })
 
-      await this.billRepository.save({
-        ...updateBill,
-        // gioDat: updateOrderDto.gioDat,
-        // ngayDat: updateOrderDto.ngayDat,
-        // thanhTien: updateOrderDto.thanhTien,
-        // maGiamGia: updateOrderDto.maGiamGia,
-        // trangThai: updateOrderDto.trangThai,
-      });
+  //     await this.billRepository.save({
+  //       ...updateBill,
+  //       // gioDat: updateOrderDto.gioDat,
+  //       // ngayDat: updateOrderDto.ngayDat,
+  //       // thanhTien: updateOrderDto.thanhTien,
+  //       // maGiamGia: updateOrderDto.maGiamGia,
+  //       // trangThai: updateOrderDto.trangThai,
+  //     });
 
-      const findAndReturn = await this.billRepository.findOneOrFail({
-        relations,
-        where: { 
-          maMonAn: updateBill.maMonAn,
-          maChiTietDonHang: updateBill.maChiTietDonHang,
-        },
-      });
+  //     const findAndReturn = await this.billRepository.findOneOrFail({
+  //       relations,
+  //       where: { 
+  //         maMonAn: updateBill.maMonAn,
+  //         maChiTietDonHang: updateBill.maChiTietDonHang,
+  //       },
+  //     });
 
-      return findAndReturn;
-    } catch (err) {
-      throw err;
-    }
-  }
+  //     return findAndReturn;
+  //   } catch (err) {
+  //     throw err;
+  //   }
+  // }
 
-  async remove(maMonAn: string, maChiTietDonHang: string) {
-    try {
-      const findOne = await this.billRepository.findOneOrFail({
-        where: { maMonAn, maChiTietDonHang },
-      });
-      return await this.billRepository.remove(findOne);
-    } catch (err) {
-      throw err;
-    }
-  }
+  // async remove(maMonAn: string, maChiTietDonHang: string) {
+  //   try {
+  //     const findOne = await this.billRepository.findOneOrFail({
+  //       where: { maMonAn, maChiTietDonHang },
+  //     });
+  //     return await this.billRepository.remove(findOne);
+  //   } catch (err) {
+  //     throw err;
+  //   }
+  // }
 }

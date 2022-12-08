@@ -38,44 +38,44 @@ export class BillController {
     return this.billService.findProductAndIngredient(maMonAn, maChiTietDonHang);
   }
 
-  @Patch(':maMonAn:maChiTietDonHang')
-  async update(
-    @Param('maMonAn') maMonAn: string, 
-    @Param('maChiTietDonHang') maChiTietDonHang: string, 
-    @Body() updateBillDto: UpdateBillDto,
-    @Res() res: Response,
-  ) {
-    if (!updateBillDto) {
-      res
-        .status(400)
-        .json({ success: false, message: 'Gãy!!!' });
-    }
-    try {
-      const updateBill = await this.billService.update(
-        maMonAn, 
-        maChiTietDonHang,
-        updateBillDto,
-      );
-      res.status(200).json({ success: true, body: updateBill });
-    } catch (err) {
-      res.status(400).json({ success: false, message: err });
-    }
-  }
+  // @Patch(':maMonAn:maChiTietDonHang')
+  // async update(
+  //   @Param('maMonAn') maMonAn: string, 
+  //   @Param('maChiTietDonHang') maChiTietDonHang: string, 
+  //   @Body() updateBillDto: UpdateBillDto,
+  //   @Res() res: Response,
+  // ) {
+  //   if (!updateBillDto) {
+  //     res
+  //       .status(400)
+  //       .json({ success: false, message: 'Gãy!!!' });
+  //   }
+  //   try {
+  //     const updateBill = await this.billService.update(
+  //       maMonAn, 
+  //       maChiTietDonHang,
+  //       updateBillDto,
+  //     );
+  //     res.status(200).json({ success: true, body: updateBill });
+  //   } catch (err) {
+  //     res.status(400).json({ success: false, message: err });
+  //   }
+  // }
 
-  @Delete(':maMonAn:maChiTietDonHang')
-  async remove(
-    @Param('maMonAn') maMonAn: string, 
-    @Param('maChiTietDonHang') maChiTietDonHang: string, 
-    @Res() res: Response
-  ) {
-    if (!maMonAn && !maChiTietDonHang) {
-      res.status(404).json({ success: false, message: 'Gãy!!!' });
-    }
-    try {
-      const deleteOrder = await this.billService.remove(maMonAn, maChiTietDonHang);
-      res.status(200).json({ success: true, body: deleteOrder });
-    } catch (err) {
-      res.status(400).json({ success: false, message: err });
-    }
-  }
+  // @Delete(':maMonAn:maChiTietDonHang')
+  // async remove(
+  //   @Param('maMonAn') maMonAn: string, 
+  //   @Param('maChiTietDonHang') maChiTietDonHang: string, 
+  //   @Res() res: Response
+  // ) {
+  //   if (!maMonAn && !maChiTietDonHang) {
+  //     res.status(404).json({ success: false, message: 'Gãy!!!' });
+  //   }
+  //   try {
+  //     const deleteOrder = await this.billService.remove(maMonAn, maChiTietDonHang);
+  //     res.status(200).json({ success: true, body: deleteOrder });
+  //   } catch (err) {
+  //     res.status(400).json({ success: false, message: err });
+  //   }
+  // }
 }
