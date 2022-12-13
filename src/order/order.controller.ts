@@ -41,9 +41,7 @@ export class OrderController {
   }
 
   @Get(':email')
-  async findCustomer(
-    @Param('email') email: string,
-  ) {
+  async findCustomer(@Param('email') email: string) {
     return this.orderService.findCustomer(email);
   }
 

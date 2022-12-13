@@ -1,6 +1,6 @@
 const ProductRelations = [
   'maDanhMuc',
-];
+]
 
 const FeedbackRelations = [
   'email',

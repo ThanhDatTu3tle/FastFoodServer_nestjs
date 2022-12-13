@@ -59,6 +59,7 @@ export class AddressService {
     })
     const address = await this.addressRepository.find();
     const customerAddress = [];
+    console.log(customer)
 
     for (let i = 0; i < customer.length; i++) {
 

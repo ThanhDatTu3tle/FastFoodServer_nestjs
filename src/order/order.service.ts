@@ -19,20 +19,20 @@ export class OrderService {
     private customerRepository: Repository<Customer>,
 
     @InjectRepository(Address)
-    private addressRepository: Repository<Address>
+    private addressRepository: Repository<Address>,
   ) {}
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {  
     try {
       // Foreign key Khachhang: customer
       const customerBody = createOrderDto.email;
-      const customers = await this.customerRepository.findOneByOrFail({
+      const customers = await this.customerRepository.findOneBy({
         email: customerBody
       });
 
       // Foreign key Danhsachdiachi: address
       const addressBody = createOrderDto.maDiaChi;
-      const categories = await this.addressRepository.findOneByOrFail({
+      const categories = await this.addressRepository.findOneBy({
         maDiaChi: addressBody
       });
 
@@ -81,12 +81,24 @@ export class OrderService {
   }
 
   async findCustomer(email: string) {
-    const findCustomer = await this.orderRepository.find({ 
+    const customer = await this.orderRepository.find({ 
       relations,
     })
     const order = await this.orderRepository.find();
+    const customerOrder = [];
+    console.log(customer)
+    console.log(this.orderRepository)
 
-    return findCustomer;
+    for (let i = 0; i < customer.length; i++) {
+
+      const emailCustomer = customer[i].email.email;
+
+      if (emailCustomer === email) {
+        customerOrder.push(customer[i])
+      }
+    }
+
+    return customerOrder;
   }
 
   async findCustomerAndAddress(email: string, maDiaChi: string) {
@@ -94,8 +106,20 @@ export class OrderService {
       relations,
     })
     const order = await this.orderRepository.find();
+    const customerOrder = [];
+    console.log(findCustomerAndAddress)
+    // console.log(this.orderRepository)
 
-    return findCustomerAndAddress;
+    for (let i = 0; i < findCustomerAndAddress.length; i++) {
+
+      const emailCustomer = findCustomerAndAddress[i].email.email;
+
+      if (emailCustomer === email) {
+        customerOrder.push(findCustomerAndAddress[i])
+      }
+    }
+
+    return customerOrder;
   }
 
   async update(maChiTietDonHang: string, updateOrderDto: UpdateOrderDto): Promise<Order> {
