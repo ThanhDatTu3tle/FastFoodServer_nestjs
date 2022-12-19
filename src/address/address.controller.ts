@@ -6,7 +6,7 @@ import { UpdateAddressDto } from './dto/update-address.dto';
 import { Response } from 'express';
 import { ApiTags, ApiQuery, ApiCreatedResponse, ApiBadRequestResponse } from '@nestjs/swagger';
 
-@ApiTags('Address')
+@ApiTags('Address Bảng Danhsachdiachi')
 @Controller('address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}

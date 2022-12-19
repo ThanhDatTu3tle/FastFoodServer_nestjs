@@ -17,8 +17,7 @@ import { BillModule } from './bill/bill.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({ ...config, autoLoadEntities: true }), 
-    ProductsModule, 
-    CategoryModule, CustomerModule, AddressModule, FeedbackModule, OrderModule, FavoriteModule, IngredientModule, FormulaModule, BillModule,
+    ProductsModule, CategoryModule, CustomerModule, AddressModule, FeedbackModule, OrderModule, FavoriteModule, IngredientModule, FormulaModule, BillModule,
   ],
   controllers: [AppController],
   providers: [AppService],
