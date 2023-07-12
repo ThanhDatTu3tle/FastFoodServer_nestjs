@@ -1,10 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Res,
+} from '@nestjs/common';
 import { FormulaService } from './formula.service';
 import { Formula } from './entities/formula.entity';
 import { CreateFormulaDto } from './dto/create-formula.dto';
 import { UpdateFormulaDto } from './dto/update-formula.dto';
 import { Response } from 'express';
-import { ApiTags, ApiQuery, ApiCreatedResponse, ApiBadRequestResponse } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiQuery,
+  ApiCreatedResponse,
+  ApiBadRequestResponse,
+} from '@nestjs/swagger';
 
 @ApiTags('Formula')
 @Controller('formula')
@@ -14,11 +28,12 @@ export class FormulaController {
   @Post()
   @ApiCreatedResponse({ type: Formula })
   @ApiBadRequestResponse()
-  async create(@Body() createFormulaDto: CreateFormulaDto, @Res() res: Response) {
+  async create(
+    @Body() createFormulaDto: CreateFormulaDto,
+    @Res() res: Response,
+  ) {
     try {
-      const newFormula = await this.formulaService.create(
-        createFormulaDto,
-      );
+      const newFormula = await this.formulaService.create(createFormulaDto);
       res.status(201).json({ success: true, body: newFormula });
     } catch (err) {
       res.status(400).json({ success: false, message: err });
@@ -40,19 +55,17 @@ export class FormulaController {
 
   @Patch(':maMonAn:maNguyenLieu')
   async update(
-    @Param('maMonAn') maMonAn: string, 
-    @Param('maNguyenLieu') maNguyenLieu: string, 
+    @Param('maMonAn') maMonAn: string,
+    @Param('maNguyenLieu') maNguyenLieu: string,
     @Body() updateFormulaDto: UpdateFormulaDto,
     @Res() res: Response,
   ) {
     if (!updateFormulaDto) {
-      res
-        .status(400)
-        .json({ success: false, message: 'Gãy!!!' });
+      res.status(400).json({ success: false, message: 'Gãy!!!' });
     }
     try {
       const updateFormula = await this.formulaService.update(
-        maMonAn, 
+        maMonAn,
         maNguyenLieu,
         updateFormulaDto,
       );
@@ -64,15 +77,18 @@ export class FormulaController {
 
   @Delete(':maMonAn:maNguyenLieu')
   async remove(
-    @Param('maMonAn') maMonAn: string, 
-    @Param('maNguyenLieu') maNguyenLieu: string, 
-    @Res() res: Response
+    @Param('maMonAn') maMonAn: string,
+    @Param('maNguyenLieu') maNguyenLieu: string,
+    @Res() res: Response,
   ) {
     if (!maMonAn && !maNguyenLieu) {
       res.status(404).json({ success: false, message: 'Gãy!!!' });
     }
     try {
-      const deleteOrder = await this.formulaService.remove(maMonAn, maNguyenLieu);
+      const deleteOrder = await this.formulaService.remove(
+        maMonAn,
+        maNguyenLieu,
+      );
       res.status(200).json({ success: true, body: deleteOrder });
     } catch (err) {
       res.status(400).json({ success: false, message: err });
